@@ -1,6 +1,5 @@
-# foo-comments
 
-| Light                            |
+| foo-comments                     |
 | -------------------------------- |
 | ![screenshot](/images/light.png) |
 
