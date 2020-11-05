@@ -24,7 +24,7 @@ const CommentsDispatchContext = React.createContext(undefined);
 
 const initialState = {
   loading: false,
-  comments: [],
+  comments: []
 };
 
 const reducer = (state, action) => {
@@ -32,17 +32,19 @@ const reducer = (state, action) => {
     case 'ADD_COMMENT':
       return {
         ...state,
-        comments: [action.payload, ...state.comments],
+        comments: [action.payload, ...state.comments]
       };
     case 'GET_COMMENTS':
       return {
         ...state,
-        comments: action.payload,
+        comments: action.payload
       };
     case 'REMOVE_COMMENT':
       return {
         ...state,
-        comments: state.comments.filter((comment) => comment._id !== action.payload._id),
+        comments: state.comments.filter(
+          comment => comment._id !== action.payload._id
+        )
       };
     default:
       return state;
@@ -52,32 +54,40 @@ const reducer = (state, action) => {
 export default function CommentsProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [error, setError] = useState('');
-  const pageId = encodeURI(`${window.location.hostname}${window.location.pathname}`);
+  const pageId = encodeURI(
+    `${window.location.hostname}${window.location.pathname}`
+  );
 
-  const addComment = (data) => {
+  const addComment = data => {
     return axios
       .post(`${props.api}/comments?pageId=${pageId}`, data)
-      .then((response) => dispatch({ type: 'ADD_COMMENT', payload: response.data }))
-      .catch((response) => Promise.reject(setError(response.message)));
+      .then(response =>
+        dispatch({ type: 'ADD_COMMENT', payload: response.data })
+      )
+      .catch(response => Promise.reject(setError(response.message)));
   };
 
-  const removeComment = (data) => {
+  const removeComment = data => {
     return axios
       .delete(`${props.api}/comments/${data._id}?secret=${data.secret}`)
       .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }))
-      .catch((response) => Promise.reject(setError(response.message)));
+      .catch(response => Promise.reject(setError(response.message)));
   };
 
   const getComments = () => {
     return axios
       .get(`${props.api}/comments?pageId=${pageId}`)
-      .then((response) => dispatch({ type: 'GET_COMMENTS', payload: response.data }))
-      .catch((response) => Promise.reject(setError(response.message)));
+      .then(response =>
+        dispatch({ type: 'GET_COMMENTS', payload: response.data })
+      )
+      .catch(response => Promise.reject(setError(response.message)));
   };
 
   return (
     <CommentsStateContext.Provider value={state}>
-      <CommentsDispatchContext.Provider value={{ addComment, getComments, removeComment }}>
+      <CommentsDispatchContext.Provider
+        value={{ addComment, getComments, removeComment }}
+      >
         {error && (
           <ErrorMessage>
             {error} :( <CloseOutlined onClick={() => setError('')} />
@@ -100,7 +110,9 @@ export function useCommentsState() {
 export function useCommentsDispatch() {
   const context = React.useContext(CommentsDispatchContext);
   if (context === undefined) {
-    throw new Error('useCommentsDispatch must be used within a CommentsProvider');
+    throw new Error(
+      'useCommentsDispatch must be used within a CommentsProvider'
+    );
   }
   return context;
 }

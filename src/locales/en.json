@@ -1,0 +1,10 @@
+{
+	"COMMENTS" : "Comments",
+	"COMMENT" : "Comment",
+	"NO_COMMENTS" : "Be the first to comment.",
+	"COMMENT_PLACEHOLDER": "What do you think?",
+	"USERNAME": "Name*",
+	"EMAIL": "Email",
+	"POST": "Post",
+	"POWERED_BY": "Powered by"
+}

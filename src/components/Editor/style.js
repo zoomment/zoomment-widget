@@ -8,8 +8,8 @@ export const Container = styled.div`
   position: relative;
   border-radius: 4px;
   box-sizing: border-box;
-  border: 2px solid ${(props) => props.theme.borderColor};
-  background: ${(props) => props.theme.componentBackground};
+  border: 2px solid ${props => props.theme.borderColor};
+  background: ${props => props.theme.componentBackground};
 `;
 
 export const Textarea = styled.textarea`
@@ -27,7 +27,7 @@ export const Textarea = styled.textarea`
   letter-spacing: 0.7px;
   box-sizing: border-box;
   font-family: monospace;
-  color: ${(props) => props.theme.textColor};
+  color: ${props => props.theme.textColor};
 `;
 
 export const Button = styled.button`
@@ -51,8 +51,8 @@ export const Button = styled.button`
   border-radius: 0 0 3px;
   font-family: sans-serif;
   transition: background 0.2s;
-  color: ${(props) => props.theme.buttonColor};
-  background: ${(props) => props.theme.buttonBackground};
+  color: ${props => props.theme.buttonColor};
+  background: ${props => props.theme.buttonBackground};
 `;
 
 export const Footer = styled.div`
@@ -62,7 +62,7 @@ export const Footer = styled.div`
   flex-direction: row;
   border-radius: 0 0 2px 2px;
   transition: opacity linear 0.2s;
-  border-top: solid 2px ${(props) => props.theme.borderColor};
+  border-top: solid 2px ${props => props.theme.borderColor};
 `;
 
 export const Input = styled.input`
@@ -78,6 +78,6 @@ export const Input = styled.input`
   letter-spacing: 0.5px;
   box-sizing: border-box;
   font-family: sans-serif;
-  background: ${(props) => props.theme.inputBackground};
-  border-right: 2px solid ${(props) => props.theme.borderColor};
+  background: ${props => props.theme.inputBackground};
+  border-right: 2px solid ${props => props.theme.borderColor};
 `;

@@ -8,8 +8,8 @@ export const Title = styled.div`
   font-weight: 700;
   letter-spacing: 0px;
   font-family: sans-serif;
-  color: ${(props) => props.theme.textColor};
-  border-bottom: 2px solid ${(props) => props.theme.borderColor};
+  color: ${props => props.theme.textColor};
+  border-bottom: 2px solid ${props => props.theme.borderColor};
 `;
 
 export const Delete = styled(DeleteTwoTone)`
@@ -46,7 +46,7 @@ export const Head = styled.div`
   align-items: center;
   flex-direction: row;
   font-family: sans-serif;
-  color: ${(props) => props.theme.textColorSecondary};
+  color: ${props => props.theme.textColorSecondary};
 `;
 
 export const Username = styled.div`
@@ -55,7 +55,7 @@ export const Username = styled.div`
   margin-right: 5px;
   letter-spacing: 0.5px;
   font-family: sans-serif;
-  color: ${(props) => props.theme.textColorSecondary};
+  color: ${props => props.theme.textColorSecondary};
 `;
 
 export const Body = styled.div`
@@ -65,7 +65,7 @@ export const Body = styled.div`
   letter-spacing: 0.3px;
   font-family: sans-serif;
   white-space: break-spaces;
-  color: ${(props) => props.theme.textColor};
+  color: ${props => props.theme.textColor};
 `;
 
 export const Date = styled.div`
@@ -74,7 +74,7 @@ export const Date = styled.div`
   margin-left: 5px;
   letter-spacing: 0px;
   font-family: sans-serif;
-  color: ${(props) => props.theme.textColorSecondary};
+  color: ${props => props.theme.textColorSecondary};
 `;
 
 export const NoResult = styled.div`
@@ -88,5 +88,5 @@ export const NoResult = styled.div`
   letter-spacing: 0px;
   justify-content: center;
   font-family: sans-serif;
-  color: ${(props) => props.theme.textColor};
+  color: ${props => props.theme.textColor};
 `;
