@@ -1,5 +1,23 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
+import { CloseOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const ErrorMessage = styled.div`
+  color: #fff;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 4px;
+  background: #e33725;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  padding: 5px 30px 5px 10px;
+  & > span {
+    position: absolute;
+    right: 20px;
+    top: 17px;
+  }
+`;
 
 const CommentsStateContext = React.createContext(undefined);
 const CommentsDispatchContext = React.createContext(undefined);
@@ -33,29 +51,38 @@ const reducer = (state, action) => {
 
 export default function CommentsProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [error, setError] = useState('');
   const pageId = encodeURI(`${window.location.hostname}${window.location.pathname}`);
 
   const addComment = (data) => {
     return axios
       .post(`${props.api}/comments?pageId=${pageId}`, data)
-      .then((response) => dispatch({ type: 'ADD_COMMENT', payload: response.data }));
+      .then((response) => dispatch({ type: 'ADD_COMMENT', payload: response.data }))
+      .catch((response) => Promise.reject(setError(response.message)));
   };
 
   const removeComment = (data) => {
     return axios
       .delete(`${props.api}/comments/${data._id}?secret=${data.secret}`)
-      .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }));
+      .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }))
+      .catch((response) => Promise.reject(setError(response.message)));
   };
 
   const getComments = () => {
     return axios
       .get(`${props.api}/comments?pageId=${pageId}`)
-      .then((response) => dispatch({ type: 'GET_COMMENTS', payload: response.data }));
+      .then((response) => dispatch({ type: 'GET_COMMENTS', payload: response.data }))
+      .catch((response) => Promise.reject(setError(response.message)));
   };
 
   return (
     <CommentsStateContext.Provider value={state}>
       <CommentsDispatchContext.Provider value={{ addComment, getComments, removeComment }}>
+        {error && (
+          <ErrorMessage>
+            {error} :( <CloseOutlined onClick={() => setError('')} />
+          </ErrorMessage>
+        )}
         {props.children}
       </CommentsDispatchContext.Provider>
     </CommentsStateContext.Provider>
