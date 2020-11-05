@@ -9,11 +9,11 @@ export const Container = styled.div`
   border-radius: 4px;
   box-sizing: border-box;
   border: 2px solid ${props => props.theme.borderColor};
-  background: ${props => props.theme.componentBackground};
 `;
 
 export const Textarea = styled.textarea`
   border: 0;
+  margin: 0;
   width: 100%;
   outline: none;
   font-size: 14px;
@@ -23,11 +23,11 @@ export const Textarea = styled.textarea`
   box-shadow: none;
   line-height: 1.4;
   padding: 8px 10px;
-  background: inherit;
   letter-spacing: 0.7px;
   box-sizing: border-box;
   font-family: monospace;
   color: ${props => props.theme.textColor};
+  background: ${props => props.theme.inputBackground};
 `;
 
 export const Button = styled.button`
@@ -78,6 +78,7 @@ export const Input = styled.input`
   letter-spacing: 0.5px;
   box-sizing: border-box;
   font-family: sans-serif;
+  color: ${props => props.theme.textColor};
   background: ${props => props.theme.inputBackground};
   border-right: 2px solid ${props => props.theme.borderColor};
 `;

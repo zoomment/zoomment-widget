@@ -2,22 +2,28 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 const themes = {
+  black: {
+    textColorSecondary: '#afb0b1',
+    buttonBackground: '#56a7e1',
+    inputBackground: '#000',
+    borderColor: '#2d2d2d',
+    buttonColor: '#fff',
+    textColor: '#fff'
+  },
   dark: {
-    textColorSecondary: '#b7b7b7',
-    componentBackground: '#fff',
-    buttonBackground: '#dcdcdc',
-    inputBackground: '#fff',
-    borderColor: '#e7e9ee',
-    buttonColor: '#444',
+    textColorSecondary: '#606984',
+    buttonBackground: '#56a7e1',
+    inputBackground: '#282c37',
+    borderColor: '#393f4f',
+    buttonColor: '#fff',
     textColor: '#fff'
   },
   light: {
     textColorSecondary: '#687a86',
-    componentBackground: '#fff',
-    buttonBackground: '#778289',
+    buttonBackground: '#56a7e1',
     inputBackground: '#f6f8f9',
-    buttonColor: '#fff',
     borderColor: '#dbdfe4',
+    buttonColor: '#fff',
     textColor: '#2a2e2e'
   }
 };
