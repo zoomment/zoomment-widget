@@ -4,7 +4,7 @@
 | -------------------------------- | ------------------------------- | -------------------------------- |
 | ![screenshot](/images/light.png) | ![screenshot](/images/dark.png) | ![screenshot](/images/black.png) |
 
-Place the following code where you'd like foo-comments to load:
+Place the following code where you'd like FooComments to load:
 
 ```html
 <div

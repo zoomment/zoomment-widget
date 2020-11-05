@@ -12,7 +12,7 @@ export default function Footer() {
         href="https://github.com/tigransimonyan/foo-comments-widget"
         target="_blanck"
       >
-        fooComments
+        FooComments
       </Link>
       <Heart />
     </Container>
