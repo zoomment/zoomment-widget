@@ -6,7 +6,7 @@ export default function Footer() {
     <Container>
       Powered by
       <Link href="https://github.com/tigransimonyan/foo-comments-widget" target="_blanck">
-        fooComment
+        fooComments
       </Link>
       <Heart />
     </Container>

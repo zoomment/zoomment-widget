@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   margin: 0;
@@ -45,8 +45,8 @@ export const Button = styled.button`
   text-shadow: none;
   border-radius: 3px;
   padding: 12px 30px;
-  letter-spacing: 0px;
   white-space: nowrap;
+  letter-spacing: 1px;
   display: inline-block;
   border-radius: 0 0 3px;
   font-family: sans-serif;
@@ -75,7 +75,7 @@ export const Input = styled.input`
   box-shadow: none;
   appearance: none;
   border-radius: 0;
-  letter-spacing: 0px;
+  letter-spacing: 0.5px;
   box-sizing: border-box;
   font-family: sans-serif;
   background: ${(props) => props.theme.inputBackground};

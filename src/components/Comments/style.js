@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { DeleteTwoTone } from "@ant-design/icons";
+import styled from 'styled-components';
+import { DeleteTwoTone } from '@ant-design/icons';
 
 export const Title = styled.div`
   width: 100%;
@@ -53,7 +53,7 @@ export const Username = styled.div`
   font-size: 12px;
   font-weight: 700;
   margin-right: 5px;
-  letter-spacing: 0px;
+  letter-spacing: 0.5px;
   font-family: sans-serif;
   color: ${(props) => props.theme.textColorSecondary};
 `;
@@ -62,7 +62,7 @@ export const Body = styled.div`
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
-  letter-spacing: 0px;
+  letter-spacing: 0.3px;
   font-family: sans-serif;
   white-space: break-spaces;
   color: ${(props) => props.theme.textColor};
