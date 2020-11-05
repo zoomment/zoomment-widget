@@ -2,7 +2,11 @@
 
 ![screenshot](/images/light.png) 
 
-Place the following code where you'd like FooComments to load:
+## Usage
+
+1. Download [foo-comments.min.js](/docs/foo-comments.min.js?raw=true)
+2. Clone and Run [foo-comments-server](https://github.com/tigransimonyan/foo-comments-server)
+4. Place the following code where you'd like FooComments to load:
 
 ```html
 <div
@@ -14,6 +18,8 @@ Place the following code where you'd like FooComments to load:
 <script src="{{YOUR_HOSTING_URL}}/foo-comments.min.js"></script>
 ```
 
+
+
 ## Options
 
 Options can be passed via data attributes.
@@ -22,3 +28,4 @@ Options can be passed via data attributes.
 | -------------- | ------------------ |
 | data-theme     | light, dark, black |
 | data-language  | en, hy, hyw        |
+
