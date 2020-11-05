@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "parcel -d tmp index.html",
-    "build": "parcel build  --no-source-maps --no-content-hash -d docs src/index.js"
+    "build": "parcel build  --no-source-maps --no-content-hash -d docs -o foo-comments.min.js src/index.js"
   },
   "keywords": [],
   "author": "",
