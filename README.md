@@ -1,8 +1,8 @@
 # foo-comments
 
-| Light                            | Dark                            | 
-| -------------------------------- | ------------------------------- | 
-| ![screenshot](/images/light.png) | ![screenshot](/images/dark.png) | 
+| Light                            |
+| -------------------------------- |
+| ![screenshot](/images/light.png) |
 
 Place the following code where you'd like foo-comments to load:
 
