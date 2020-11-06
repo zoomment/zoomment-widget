@@ -86,7 +86,7 @@ Response Body:
 ```
 
 
-### Get Comments
+### Get comments
 ```
 GET {{YOUR_API_URL}}/comments?pageId={{PAGE_URL}}
 ```
@@ -103,7 +103,7 @@ Response Body:
 ```
 
 
-### Delete Comment
+### Delete comment
 
 ```
 DELETE {{YOUR_API_URL}}/comments/{{COMMENT_ID}}?secret={{COMMENT_SECRET}}
