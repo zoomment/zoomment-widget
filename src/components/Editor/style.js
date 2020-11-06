@@ -25,7 +25,6 @@ export const Textarea = styled.textarea`
   padding: 8px 10px;
   letter-spacing: 0.7px;
   box-sizing: border-box;
-  font-family: monospace;
   color: ${props => props.theme.textColor};
   background: ${props => props.theme.inputBackground};
 `;
