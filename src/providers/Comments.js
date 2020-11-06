@@ -9,14 +9,15 @@ const ErrorMessage = styled.div`
   font-weight: 500;
   line-height: 20px;
   border-radius: 4px;
+  position: relative;
   background: #e33725;
   margin-bottom: 10px;
   letter-spacing: 0.5px;
   padding: 5px 30px 5px 10px;
   & > span {
     position: absolute;
-    right: 20px;
-    top: 17px;
+    right: 12px;
+    top: 9px;
   }
 `;
 
