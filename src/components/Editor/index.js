@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import lscache from 'lscache';
-import { useCommentsDispatch } from '../../providers/Comments';
+import { useCommentsDispatch } from 'providers/Comments';
 import { Container, Textarea, Button, Footer, Input, Form } from './style';
 import { useTranslation } from 'react-i18next';
 

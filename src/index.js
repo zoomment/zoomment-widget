@@ -1,9 +1,9 @@
 import React from 'react';
-import App from './App';
-import CommentsProvider from './providers/Comments';
-import LanguageProvider from './providers/Language';
-import ThemeProvider from './providers/Theme';
 import ReactDOM from 'react-dom';
+import CommentsProvider from 'providers/Comments';
+import LanguageProvider from 'providers/Language';
+import ThemeProvider from 'providers/Theme';
+import App from './App';
 
 const Element = document.getElementById('foo-comments');
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
-import { useCommentsState, useCommentsDispatch } from '../../providers/Comments';
+import { useCommentsState, useCommentsDispatch } from 'providers/Comments';
 import { useTranslation } from 'react-i18next';
 
 import {

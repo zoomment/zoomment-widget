@@ -1,25 +1,6 @@
 import React, { useReducer, useState } from 'react';
-import { CloseOutlined } from '@ant-design/icons';
+import { ErrorMessage, Close } from './style';
 import axios from 'axios';
-import styled from 'styled-components';
-
-const ErrorMessage = styled.div`
-  color: #fff;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 20px;
-  border-radius: 4px;
-  position: relative;
-  background: #e33725;
-  margin-bottom: 10px;
-  letter-spacing: 0.5px;
-  padding: 5px 30px 5px 10px;
-  & > span {
-    position: absolute;
-    right: 12px;
-    top: 9px;
-  }
-`;
 
 const CommentsStateContext = React.createContext(undefined);
 const CommentsDispatchContext = React.createContext(undefined);
@@ -59,7 +40,7 @@ export default function CommentsProvider(props) {
 
   const addComment = data => {
     return axios
-      .post(`${props.api}/comments?pageId=${pageId}`, data)
+      .post(`${props.api}/comments`, { ...data, pageId })
       .then(response => dispatch({ type: 'ADD_COMMENT', payload: response.data }))
       .catch(response => Promise.reject(setError(response.message)));
   };
@@ -85,7 +66,7 @@ export default function CommentsProvider(props) {
       >
         {error && (
           <ErrorMessage>
-            {error} :( <CloseOutlined onClick={() => setError('')} />
+            {error} :( <Close onClick={() => setError('')} />
           </ErrorMessage>
         )}
         {props.children}
