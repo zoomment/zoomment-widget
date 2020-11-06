@@ -6,11 +6,13 @@ import styled from 'styled-components';
 const ErrorMessage = styled.div`
   color: #fff;
   font-size: 12px;
+  font-weight: 500;
   line-height: 20px;
   border-radius: 4px;
   background: #e33725;
   margin-bottom: 10px;
   letter-spacing: 0.5px;
+  font-family: sans-serif;
   padding: 5px 30px 5px 10px;
   & > span {
     position: absolute;
