@@ -46,10 +46,9 @@ export const Button = styled.button`
   border-radius: 3px;
   padding: 12px 30px;
   white-space: nowrap;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   display: inline-block;
   border-radius: 0 0 3px;
-  font-family: sans-serif;
   transition: background 0.2s;
   color: ${props => props.theme.buttonColor};
   background: ${props => props.theme.buttonBackground};
@@ -82,7 +81,6 @@ export const Input = styled.input`
   border-radius: 0;
   letter-spacing: 0.5px;
   box-sizing: border-box;
-  font-family: sans-serif;
   color: ${props => props.theme.textColor};
   background: ${props => props.theme.inputBackground};
   border-right: 2px solid ${props => props.theme.borderColor};

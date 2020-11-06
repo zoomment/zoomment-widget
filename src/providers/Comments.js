@@ -12,7 +12,6 @@ const ErrorMessage = styled.div`
   background: #e33725;
   margin-bottom: 10px;
   letter-spacing: 0.5px;
-  font-family: sans-serif;
   padding: 5px 30px 5px 10px;
   & > span {
     position: absolute;

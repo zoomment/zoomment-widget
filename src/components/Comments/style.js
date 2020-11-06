@@ -3,11 +3,11 @@ import { DeleteTwoTone } from '@ant-design/icons';
 
 export const Title = styled.div`
   width: 100%;
+  line-height: 1;
   font-size: 15px;
   padding: 12px 0;
   font-weight: 700;
   letter-spacing: 0px;
-  font-family: sans-serif;
   color: ${props => props.theme.textColor};
   border-bottom: 2px solid ${props => props.theme.borderColor};
 `;
@@ -42,10 +42,10 @@ export const Avatar = styled.img`
 export const Head = styled.div`
   display: flex;
   font-size: 8px;
+  line-height: 1;
   margin-bottom: 4px;
   align-items: center;
   flex-direction: row;
-  font-family: sans-serif;
   color: ${props => props.theme.textColorSecondary};
 `;
 
@@ -54,7 +54,6 @@ export const Username = styled.div`
   font-weight: 700;
   margin-right: 5px;
   letter-spacing: 0.5px;
-  font-family: sans-serif;
   color: ${props => props.theme.textColorSecondary};
 `;
 
@@ -63,7 +62,6 @@ export const Body = styled.div`
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.3px;
-  font-family: sans-serif;
   white-space: break-spaces;
   color: ${props => props.theme.textColor};
 `;
@@ -73,7 +71,6 @@ export const Date = styled.div`
   font-weight: 500;
   margin-left: 5px;
   letter-spacing: 0px;
-  font-family: sans-serif;
   color: ${props => props.theme.textColorSecondary};
 `;
 
@@ -87,6 +84,5 @@ export const NoResult = styled.div`
   align-items: center;
   letter-spacing: 0px;
   justify-content: center;
-  font-family: sans-serif;
   color: ${props => props.theme.textColor};
 `;

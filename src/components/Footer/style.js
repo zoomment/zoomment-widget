@@ -3,13 +3,13 @@ import { HeartFilled } from '@ant-design/icons';
 
 export const Container = styled.div`
   width: 100%;
+  line-height: 1;
   font-size: 11px;
   padding: 8px 10px;
   text-align: right;
   letter-spacing: 0px;
   letter-spacing: 0.5px;
   box-sizing: border-box;
-  font-family: sans-serif;
   color: ${props => props.theme.textColorSecondary};
 `;
 
