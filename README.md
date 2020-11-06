@@ -52,10 +52,10 @@ npm run build
 
 ## API Reference
 
-### Add comment
+### Add Comment
 
 ```
-POST {{YOUR_API_URL}}/comments?pageId={{PAGE_ID}}
+POST {{YOUR_API_URL}}/comments
 ```
 
 Request Body:
@@ -83,7 +83,7 @@ Response Body:
 }
 ```
 
-### Get comments
+### Get Comments
 
 ```
 GET {{YOUR_API_URL}}/comments?pageId={{PAGE_ID}}
@@ -105,7 +105,7 @@ Response Body:
 ]
 ```
 
-### Delete comment
+### Delete Comment
 
 ```
 DELETE {{YOUR_API_URL}}/comments/{{COMMENT_ID}}?secret={{COMMENT_SECRET}}
