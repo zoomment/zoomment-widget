@@ -17,7 +17,8 @@ export default function Editor() {
     actions
       .addComment({
         body,
-        owner: { name, email }
+        owner: { name, email },
+        pageUrl: encodeURI(window.location.href)
       })
       .then(() => setBody(''));
   };

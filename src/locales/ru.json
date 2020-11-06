@@ -1,0 +1,11 @@
+{
+	"COMMENTS" : "Kомментарий",
+	"COMMENT" : "Kомментарий",
+	"NO_COMMENTS" : "Прокомментируйте первым.",
+	"COMMENT_PLACEHOLDER": "Что вы думаете?",
+	"USERNAME": "Имя*",
+	"EMAIL": "Почты",
+	"POST": "Опубликовать",
+	"POWERED_BY": "Работает на",
+	"LOADING": "Загрузка..."
+}

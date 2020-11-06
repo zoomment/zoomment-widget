@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
-import {
-  useCommentsState,
-  useCommentsDispatch
-} from '../../providers/Comments';
+import { useCommentsState, useCommentsDispatch } from '../../providers/Comments';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -27,6 +24,10 @@ export default function Comments() {
 
   useEffect(() => actions.getComments(), []);
 
+  if (state.loading) {
+    return <NoResult>{t('LOADING')}</NoResult>;
+  }
+
   if (state.comments.length == 0) {
     return <NoResult>{t('NO_COMMENTS')}</NoResult>;
   }
@@ -34,20 +35,15 @@ export default function Comments() {
   return (
     <Container>
       <Title>
-        {state.comments.length}{' '}
-        {state.comments.length > 1 ? t('COMMENTS') : t('COMMENT')}
+        {state.comments.length} {state.comments.length > 1 ? t('COMMENTS') : t('COMMENT')}
       </Title>
       <List>
         {state.comments.map(comment => (
           <Item key={comment._id}>
-            <Avatar
-              src={`https://www.gravatar.com/avatar/${comment._id}?d=monsterid`}
-            />
+            <Avatar src={`https://www.gravatar.com/avatar/${comment._id}?d=monsterid`} />
             <Head>
               <Username>{comment.owner?.name}</Username>•
-              <Date>
-                {moment(comment.createdAt).format('DD MMM YYYY - HH:mm')}
-              </Date>
+              <Date>{moment(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
             </Head>
             <Body>
               {comment.body}

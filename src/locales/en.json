@@ -6,5 +6,6 @@
 	"USERNAME": "Name*",
 	"EMAIL": "Email",
 	"POST": "Post",
-	"POWERED_BY": "Powered by"
+	"POWERED_BY": "Powered by",
+	"LOADING": "Loading..."
 }

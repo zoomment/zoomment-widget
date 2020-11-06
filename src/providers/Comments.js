@@ -24,7 +24,7 @@ const CommentsStateContext = React.createContext(undefined);
 const CommentsDispatchContext = React.createContext(undefined);
 
 const initialState = {
-  loading: false,
+  loading: true,
   comments: []
 };
 
@@ -38,6 +38,7 @@ const reducer = (state, action) => {
     case 'GET_COMMENTS':
       return {
         ...state,
+        loading: false,
         comments: action.payload
       };
     case 'REMOVE_COMMENT':

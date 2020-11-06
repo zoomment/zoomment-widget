@@ -7,7 +7,6 @@ export const Container = styled.div`
   font-size: 11px;
   padding: 8px 10px;
   text-align: right;
-  letter-spacing: 0px;
   letter-spacing: 0.5px;
   box-sizing: border-box;
   color: ${props => props.theme.textColorSecondary};
