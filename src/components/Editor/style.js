@@ -65,6 +65,11 @@ export const Footer = styled.div`
   border-top: solid 2px ${props => props.theme.borderColor};
 `;
 
+export const Form = styled.form`
+  font-size: 0;
+  line-height: 0;
+`;
+
 export const Input = styled.input`
   flex: 1;
   font-size: 13px;

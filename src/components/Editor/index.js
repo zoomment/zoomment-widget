@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import lscache from 'lscache';
 import { useCommentsDispatch } from '../../providers/Comments';
-import { Container, Textarea, Button, Footer, Input } from './style';
+import { Container, Textarea, Button, Footer, Input, Form } from './style';
 import { useTranslation } from 'react-i18next';
 
 export default function Editor() {
@@ -24,7 +24,7 @@ export default function Editor() {
 
   return (
     <Container>
-      <form onSubmit={onValideSubmit}>
+      <Form onSubmit={onValideSubmit}>
         <Textarea
           onChange={e => setBody(e.target.value)}
           placeholder={t('COMMENT_PLACEHOLDER')}
@@ -53,7 +53,7 @@ export default function Editor() {
           />
           <Button>{t('POST')}</Button>
         </Footer>
-      </form>
+      </Form>
     </Container>
   );
 }

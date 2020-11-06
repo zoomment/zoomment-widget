@@ -44,9 +44,7 @@ const reducer = (state, action) => {
     case 'REMOVE_COMMENT':
       return {
         ...state,
-        comments: state.comments.filter(
-          comment => comment._id !== action.payload._id
-        )
+        comments: state.comments.filter(comment => comment._id !== action.payload._id)
       };
     default:
       return state;
@@ -56,16 +54,12 @@ const reducer = (state, action) => {
 export default function CommentsProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [error, setError] = useState('');
-  const pageId = encodeURI(
-    `${window.location.hostname}${window.location.pathname}`
-  );
+  const pageId = encodeURI(`${window.location.hostname}${window.location.pathname}`);
 
   const addComment = data => {
     return axios
       .post(`${props.api}/comments?pageId=${pageId}`, data)
-      .then(response =>
-        dispatch({ type: 'ADD_COMMENT', payload: response.data })
-      )
+      .then(response => dispatch({ type: 'ADD_COMMENT', payload: response.data }))
       .catch(response => Promise.reject(setError(response.message)));
   };
 
@@ -79,9 +73,7 @@ export default function CommentsProvider(props) {
   const getComments = () => {
     return axios
       .get(`${props.api}/comments?pageId=${pageId}`)
-      .then(response =>
-        dispatch({ type: 'GET_COMMENTS', payload: response.data })
-      )
+      .then(response => dispatch({ type: 'GET_COMMENTS', payload: response.data }))
       .catch(response => Promise.reject(setError(response.message)));
   };
 
@@ -112,9 +104,7 @@ export function useCommentsState() {
 export function useCommentsDispatch() {
   const context = React.useContext(CommentsDispatchContext);
   if (context === undefined) {
-    throw new Error(
-      'useCommentsDispatch must be used within a CommentsProvider'
-    );
+    throw new Error('useCommentsDispatch must be used within a CommentsProvider');
   }
   return context;
 }
