@@ -55,7 +55,7 @@ npm run build
 ### Add comment
 
 ```
-POST {{YOUR_API_URL}}/comments?pageId={{PAGE_URL}}
+POST {{YOUR_API_URL}}/comments?pageId={{PAGE_ID}}
 ```
 
 Request Body:
@@ -86,7 +86,7 @@ Response Body:
 ### Get comments
 
 ```
-GET {{YOUR_API_URL}}/comments?pageId={{PAGE_URL}}
+GET {{YOUR_API_URL}}/comments?pageId={{PAGE_ID}}
 ```
 
 Response Body:
