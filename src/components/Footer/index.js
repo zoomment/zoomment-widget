@@ -9,7 +9,7 @@ export default function Footer() {
     <Container>
       {t('POWERED_BY')}
       <Link
-        href="https://github.com/tigransimonyan/foo-comments-widget"
+        href="https://github.com/FooComments/foo-comments-widget"
         target="_blanck"
       >
         FooComments
