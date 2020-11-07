@@ -27,6 +27,12 @@ Options can be passed via data attributes.
 | data-theme     | light, dark, black  |
 | data-language  | en, hy, hyw, ru, zh |
 
+## CDN
+
+```
+<script src="https://cdn.jsdelivr.net/gh/FooComments/foo-comments-widget@1.0.1/docs/foo-comments.min.js"></script>
+```
+
 ## Development
 
 1. Make sure you have node.js installed.
