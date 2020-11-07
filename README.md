@@ -33,13 +33,15 @@ Options can be passed via data attributes.
 2. Clone the repository and install dependencies:
 
 ```
-npm install
+$ git clone https://github.com/FooComments/foo-comments-widget.git
+$ cd foo-comments-widget
+$ npm install
 ```
 
 3. Run it for development:
 
 ```
-npm start
+$ npm start
 ```
 
 Open http://localhost:1234 to view it in the browser.
@@ -47,7 +49,7 @@ Open http://localhost:1234 to view it in the browser.
 4. Build it for production:
 
 ```
-npm run build
+$ npm run build
 ```
 
 ## API Reference
@@ -55,7 +57,7 @@ npm run build
 ### Add Comment
 
 ```
-POST {{YOUR_API_URL}}/comments
+POST {{YOUR_API_URL}}/api/comments
 ```
 
 Request Body:
@@ -86,7 +88,7 @@ Response Body:
 ### Get Comments
 
 ```
-GET {{YOUR_API_URL}}/comments?pageId={{PAGE_ID}}
+GET {{YOUR_API_URL}}/api/comments?pageId={{PAGE_ID}}
 ```
 
 Response Body:
@@ -108,7 +110,7 @@ Response Body:
 ### Delete Comment
 
 ```
-DELETE {{YOUR_API_URL}}/comments/{{COMMENT_ID}}?secret={{COMMENT_SECRET}}
+DELETE {{YOUR_API_URL}}/api/comments/{{COMMENT_ID}}?secret={{COMMENT_SECRET}}
 ```
 
 Response Body:
