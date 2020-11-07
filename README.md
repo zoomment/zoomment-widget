@@ -55,7 +55,7 @@ npm run build
 ### Add Comment
 
 ```
-POST {{YOUR_API_URL}}/comments
+POST {{YOUR_API_URL}}/api/comments
 ```
 
 Request Body:
@@ -86,7 +86,7 @@ Response Body:
 ### Get Comments
 
 ```
-GET {{YOUR_API_URL}}/comments?pageId={{PAGE_ID}}
+GET {{YOUR_API_URL}}/api/comments?pageId={{PAGE_ID}}
 ```
 
 Response Body:
@@ -108,7 +108,7 @@ Response Body:
 ### Delete Comment
 
 ```
-DELETE {{YOUR_API_URL}}/comments/{{COMMENT_ID}}?secret={{COMMENT_SECRET}}
+DELETE {{YOUR_API_URL}}/api/comments/{{COMMENT_ID}}?secret={{COMMENT_SECRET}}
 ```
 
 Response Body:
