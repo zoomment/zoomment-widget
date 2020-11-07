@@ -22,6 +22,7 @@ export const Textarea = styled.textarea`
   min-height: 80px;
   box-shadow: none;
   line-height: 1.4;
+  border-radius: 0;
   padding: 8px 10px;
   letter-spacing: 0.7px;
   box-sizing: border-box;
@@ -42,13 +43,12 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: 1.1;
   text-shadow: none;
-  border-radius: 3px;
-  padding: 12px 30px;
+  padding: 12px 25px;
   white-space: nowrap;
   letter-spacing: 0.5px;
   display: inline-block;
-  border-radius: 0 0 3px;
   transition: background 0.2s;
+  border-radius: 0px 0px 3px 0px;
   color: ${props => props.theme.buttonColor};
   background: ${props => props.theme.buttonBackground};
 `;
