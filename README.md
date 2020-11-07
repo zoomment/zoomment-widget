@@ -33,13 +33,15 @@ Options can be passed via data attributes.
 2. Clone the repository and install dependencies:
 
 ```
-npm install
+$ git clone https://github.com/FooComments/foo-comments-widget.git
+$ cd foo-comments-widget
+$ npm install
 ```
 
 3. Run it for development:
 
 ```
-npm start
+$ npm start
 ```
 
 Open http://localhost:1234 to view it in the browser.
@@ -47,7 +49,7 @@ Open http://localhost:1234 to view it in the browser.
 4. Build it for production:
 
 ```
-npm run build
+$ npm run build
 ```
 
 ## API Reference
