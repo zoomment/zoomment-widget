@@ -60,6 +60,7 @@ export const Username = styled.div`
 export const Body = styled.div`
   font-size: 15px;
   font-weight: 400;
+  min-height: 24px;
   line-height: 24px;
   letter-spacing: 0.3px;
   white-space: break-spaces;

@@ -41,7 +41,12 @@ export default function CommentsProvider(props) {
   const addComment = data => {
     return axios
       .post(`${props.api}/comments`, { ...data, pageId })
-      .then(response => dispatch({ type: 'ADD_COMMENT', payload: response.data }))
+      .then(response =>
+        dispatch({
+          type: 'ADD_COMMENT',
+          payload: { ...data, ...response.data }
+        })
+      )
       .catch(response => Promise.reject(setError(response.message)));
   };
 
