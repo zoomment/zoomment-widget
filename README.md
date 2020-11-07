@@ -29,7 +29,7 @@ Options can be passed via data attributes.
 
 ## CDN
 
-```
+```html
 <script src="https://cdn.jsdelivr.net/gh/FooComments/foo-comments-widget@1.0.1/docs/foo-comments.min.js"></script>
 ```
 
