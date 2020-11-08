@@ -4,7 +4,7 @@
 	"NO_COMMENTS" : "Be the first to comment.",
 	"COMMENT_PLACEHOLDER": "What do you think?",
 	"USERNAME": "Name*",
-	"EMAIL": "Email",
+	"EMAIL": "Email*",
 	"POST": "Post",
 	"POWERED_BY": "Powered by",
 	"LOADING": "Loading..."
