@@ -40,7 +40,9 @@ export default function Comments() {
       <List>
         {state.comments.map(comment => (
           <Item key={comment._id}>
-            <Avatar src={`https://www.gravatar.com/avatar/${comment._id}?d=monsterid`} />
+            <Avatar
+              src={`https://www.gravatar.com/avatar/${comment.owner?.gravatar}?d=monsterid`}
+            />
             <Head>
               <Username>{comment.owner?.name}</Username>•
               <Date>{moment(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>

@@ -51,6 +51,7 @@ export default function Editor() {
             placeholder={t('EMAIL')}
             value={email}
             type="email"
+            required
           />
           <Button>{t('POST')}</Button>
         </Footer>
