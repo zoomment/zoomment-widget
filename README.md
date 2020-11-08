@@ -75,7 +75,7 @@ Request Body:
   "pageUrl: "https://foocomments.github.io/foo-comments-widget/page-1"
   "owner": {
     "name": "Bob",
-    "email": ""
+    "email": "test@gmail.com"
   }
 }
 ```
@@ -87,6 +87,10 @@ Response Body:
   "_id": "5fa538f82378f23944454737",
   "secret": "61e68a4caea667b4a628e45a2ac3dc216e0b8327",
   "createdAt": "2020-11-06T11:52:24.449Z",
+  "owner": {
+    "gravatar": "21ad0bd836b90d08f4cf640b4c298e7c",
+    "name": "Bob"
+  },
   ...
 }
 ```
@@ -106,6 +110,7 @@ Response Body:
     "body": "Hello!",
     "createdAt": "2020-11-05T13:12:08.513Z",
     "owner": {
+      "gravatar": "21ad0bd836b90d08f4cf640b4c298e7c",
       "name": "Bob"
     },
   },
