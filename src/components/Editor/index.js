@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import lscache from 'lscache';
 import { useCommentsDispatch } from 'providers/Comments';
 import { Container, Textarea, Button, Footer, Input, Form } from './style';
@@ -9,6 +9,8 @@ export default function Editor() {
   const [name, setName] = useState(lscache.get('name') || '');
   const [email, setEmail] = useState(lscache.get('email') || '');
 
+  const form = useRef();
+  const submit = useRef();
   const { t } = useTranslation();
   const actions = useCommentsDispatch();
 
@@ -23,9 +25,22 @@ export default function Editor() {
       .then(() => setBody(''));
   };
 
+  const onEnter = e => {
+    if (e.keyCode == 13 && (e.metaKey || e.ctrlKey)) {
+      submit.current.click();
+    }
+  };
+
+  useLayoutEffect(() => {
+    form.current.addEventListener('keydown', onEnter);
+    return () => {
+      form.current.removeEventListener('keydown', onEnter);
+    };
+  }, [form.current]);
+
   return (
     <Container>
-      <Form onSubmit={onValideSubmit}>
+      <Form ref={form} onSubmit={onValideSubmit}>
         <Textarea
           onChange={e => setBody(e.target.value)}
           placeholder={t('COMMENT_PLACEHOLDER')}
@@ -53,7 +68,9 @@ export default function Editor() {
             type="email"
             required
           />
-          <Button>{t('POST')}</Button>
+          <Button ref={submit} type="submit">
+            {t('POST')}
+          </Button>
         </Footer>
       </Form>
     </Container>
