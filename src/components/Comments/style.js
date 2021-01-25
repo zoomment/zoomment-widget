@@ -75,6 +75,7 @@ export const Date = styled.a`
   text-decoration: none;
   color: ${props => props.theme.textColorSecondary};
   &:hover {
+    color: inherit;
     text-decoration: underline;
   }
 `;
