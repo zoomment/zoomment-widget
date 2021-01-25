@@ -7,7 +7,8 @@ const CommentsDispatchContext = React.createContext(undefined);
 
 const initialState = {
   loading: true,
-  comments: []
+  comments: [],
+  api: ''
 };
 
 const reducer = (state, action) => {
@@ -34,9 +35,12 @@ const reducer = (state, action) => {
 };
 
 export default function CommentsProvider(props) {
-  const [state, dispatch] = useReducer(reducer, initialState);
   const [error, setError] = useState('');
   const pageId = encodeURI(`${window.location.hostname}${window.location.pathname}`);
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    ...props
+  });
 
   const addComment = data => {
     return axios

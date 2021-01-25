@@ -15,6 +15,7 @@ export const Textarea = styled.textarea`
   border: 0;
   margin: 0;
   width: 100%;
+  height: auto;
   outline: none;
   font-size: 14px;
   min-width: 100%;
@@ -70,10 +71,11 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   flex: 1;
-  font-size: 13px;
+  height: auto;
   border: none;
   padding: 8px;
   outline: none;
+  font-size: 13px;
   min-width: 10px;
   box-shadow: none;
   appearance: none;

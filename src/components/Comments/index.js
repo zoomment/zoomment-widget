@@ -45,7 +45,9 @@ export default function Comments() {
             />
             <Head>
               <Username>{comment.owner?.name}</Username>•
-              <Date>{moment(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
+              <Date href={`${state.api}/comments/${comment._id}`}>
+                {moment(comment.createdAt).format('DD MMM YYYY - HH:mm')}
+              </Date>
             </Head>
             <Body>
               {comment.body}
