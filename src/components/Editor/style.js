@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const rotate = keyframes`
+  0% { 
+    transform: rotate(0); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+`;
 
 export const Container = styled.div`
   margin: 0;
@@ -52,6 +61,24 @@ export const Button = styled.button`
   border-radius: 0px 0px 3px 0px;
   color: ${props => props.theme.buttonColor};
   background: ${props => props.theme.buttonBackground};
+  &:disabled {
+    font-size: 0;
+    position: relative;
+    &:after {
+      top: 26%;
+      left: 43%;
+      content: '';
+      width: 15px;
+      height: 15px;
+      display: block;
+      position: absolute;
+      border-radius: 100%;
+      animation: ${rotate} 1s linear infinite;
+      border: 3px solid ${props => props.theme.buttonColor};
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+    }
+  }
 `;
 
 export const Footer = styled.div`

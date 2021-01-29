@@ -36,7 +36,7 @@ const reducer = (state, action) => {
 
 export default function CommentsProvider(props) {
   const [error, setError] = useState('');
-  const pageId = encodeURI(`${window.location.hostname}${window.location.pathname}`);
+  const pageId = `${window.location.hostname}${window.location.pathname}`;
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     ...props
@@ -63,7 +63,7 @@ export default function CommentsProvider(props) {
 
   const getComments = () => {
     return axios
-      .get(`${props.api}/comments?pageId=${pageId}`)
+      .get(`${props.api}/comments?pageId=${encodeURI(pageId)}`)
       .then(response => dispatch({ type: 'GET_COMMENTS', payload: response.data }))
       .catch(response => Promise.reject(setError(response.message)));
   };
