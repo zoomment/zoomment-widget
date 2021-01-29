@@ -22,7 +22,7 @@ export default function Editor() {
       .addComment({
         body,
         owner: { name, email },
-        pageUrl: encodeURI(window.location.href)
+        pageUrl: window.location.href
       })
       .then(() => {
         setBody('');
