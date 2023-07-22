@@ -1,5 +1,5 @@
 {
-  "presets": ["@babel/preset-react"],
+  "presets": [],
   "plugins": [
     ["module-resolver", { 
       "root": ["./src"] 
