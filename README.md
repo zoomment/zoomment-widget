@@ -1,6 +1,6 @@
 # FooComments
 
-Comments, views and reactions for your website.💬👁️😀
+Comments, views and reactions for your website with less than 300kb.💬👁️😀
 
 ![screenshot reactions and views](/images/reactions-views-screenshot.png)
 ![screenshot comments](/images/light.png)
@@ -45,8 +45,8 @@ Options can be passed via data attributes for comment section.
 | Attribute Name               | Values description                                     |
 | ---------------------------- | ------------------------------------------------------ |
 | data-emotions                | list comma separated emojis, leave empty if not needed |
-| data-api-url                 | optional if specified in comment section               |
-| data-show-page-views         | leave empty for removing page view count               |
+| data-api-url                 | optional, if specified in comment section              |
+| data-show-page-views         | optional, leave empty for removing page view count     |
 
 
 ## CDN
