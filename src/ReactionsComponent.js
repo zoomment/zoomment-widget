@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 import { useReactionDispatch, useReactionState } from 'providers/Reactions';
 
 const ContentBubbleContainer = styled.div`
   min-height: 50px;
 `;
+
 const ContentBubble = styled.span`
   cursor: pointer;
   padding: 5px;
@@ -22,21 +24,26 @@ const ContentBubble = styled.span`
     background: #cbe9ff;
   }
 
-  &.selected-reaction,
+  &.selected-emotion,
   .selectedReaction:hover {
     background: #56a7e1;
     color: white;
     border: none;
     font-size: 30px;
   }
+
+  &.page-view {
+    background: none;
+    cursor: default;
+  }
 `;
 
-function ReactionsComponent({ reactions }) {
+function ReactionsComponent({ emotions, showPageViews }) {
   const reactionsState = useReactionState();
   const actions = useReactionDispatch();
+  const { t } = useTranslation();
 
-  const selectedReaction = reactionsState?.reactions?.userReaction?.reaction;
-  console.log(reactionsState);
+  const { pageViews, aggregation, userReaction } = reactionsState?.reactions || {};
 
   const react = reaction => () => actions.react(reaction);
 
@@ -52,24 +59,19 @@ function ReactionsComponent({ reactions }) {
 
   return (
     <ContentBubbleContainer>
-      {reactions.map((reaction, index) => (
+      {emotions.map((emotion, index) => (
         <ContentBubble
-          key={reaction + index}
-          className={selectedReaction === reaction ? 'selected-reaction' : ''}
-          onClick={react(reaction)}
+          key={emotion + index}
+          className={userReaction?.reaction === emotion ? 'selected-emotion' : ''}
+          onClick={react(emotion)}
         >
-          <span>{reaction}</span>
-          <span>
-            {
-              reactionsState?.reactions?.aggregation?.find(data => data._id === reaction)
-                ?.count
-            }
-          </span>
+          <span>{emotion}</span>
+          <span>{aggregation?.find(data => data._id === emotion)?.count}</span>
         </ContentBubble>
       ))}
-      <ContentBubble>
-        page viewed {reactionsState?.reactions?.pageViews} times
-      </ContentBubble>
+      {showPageViews && pageViews && (
+        <ContentBubble className="page-view" >{t('page views')} 👁️ {pageViews}</ContentBubble>
+      )}
     </ContentBubbleContainer>
   );
 }

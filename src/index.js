@@ -30,12 +30,13 @@ if (CommentsElement) {
 const ReactionsElement = document.getElementById('foo-reactions');
 
 if (ReactionsElement) {
-  const reactions = ReactionsElement.getAttribute('data-reactions').split(',');
+  const emotions = ReactionsElement.getAttribute('data-emotions').split(',');
   const reactionsAPI = ReactionsElement.getAttribute('data-api-url');
- 
+  const showPageViews = ReactionsElement.getAttribute('data-show-page-views');
+
   ReactDOM.render(
     <ReactionsProvider api={commentsAPI || reactionsAPI}>
-      <ReactionsComponent reactions={reactions}/>
+      <ReactionsComponent emotions={emotions} showPageViews={showPageViews} />
     </ReactionsProvider>,
     ReactionsElement
   );
