@@ -1,5 +1,7 @@
 # FooComments
 
+Comments, views and reactions for your website.💬👁️😀
+
 ![screenshot reactions and views](/images/reactions-views-screenshot.png)
 ![screenshot comments](/images/light.png)
 
