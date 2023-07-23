@@ -10,7 +10,8 @@ const ContentBubbleContainer = styled.div`
   min-height: 50px;
 `;
 
-const ContentBubble = styled.span`
+const ContentBubble = styled.button`
+  border: none;
   cursor: pointer;
   padding: 5px;
   margin: 5px;
@@ -70,7 +71,9 @@ function ReactionsComponent({ emotions, showPageViews }) {
         </ContentBubble>
       ))}
       {showPageViews && pageViews && (
-        <ContentBubble className="page-view" >{t('page views')} 👁️ {pageViews}</ContentBubble>
+        <ContentBubble className="page-view">
+          {t('page views')} 👁️ {pageViews}
+        </ContentBubble>
       )}
     </ContentBubbleContainer>
   );

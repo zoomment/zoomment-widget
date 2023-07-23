@@ -1,6 +1,7 @@
 # FooComments
 
-![screenshot](/images/light.png)
+![screenshot reactions and views](/images/reactions-views-screenshot.png)
+![screenshot comments](/images/light.png)
 
 ## Usage
 
@@ -9,23 +10,42 @@
 3. Place the following code where you'd like FooComments to load:
 
 ```html
+<!-- for the comment section -->
 <div
   id="foo-comments"
   data-theme="light"
   data-language="en"
   data-api-url="{{YOUR_API_URL}}"
 ></div>
+
+<!-- for the reactions and view count section -->
+<div
+  id="foo-reactions"
+  data-emotions="❤️,😀,🪄,🥸,💡,🤔,💩,😢"
+  data-show-page-views="true"
+  data-api-url="{{YOUR_API_URL}}" 
+></div>
+
+<!-- the working script -->
 <script src="{{YOUR_HOSTING_URL}}/foo-comments.min.js"></script>
 ```
 
 ## Options
 
-Options can be passed via data attributes.
+Options can be passed via data attributes for comment section.
 
 | Attribute Name | Possible values     |
 | -------------- | ------------------- |
 | data-theme     | light, dark, black  |
 | data-language  | en, hy, hyw, ru, zh |
+
+
+| Attribute Name               | Values description                                     |
+| ---------------------------- | ------------------------------------------------------ |
+| data-emotions                | list comma separated emojis, leave empty if not needed |
+| data-api-url                 | optional if specified in comment section               |
+| data-show-page-views         | leave empty for removing page view count               |
+
 
 ## CDN
 
