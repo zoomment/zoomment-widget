@@ -5,6 +5,7 @@ const themes = {
   black: {
     textColorSecondary: '#afb0b1',
     buttonBackground: '#56a7e1',
+    buttonBackgroundHover: '#3c8cc6',
     inputBackground: '#000',
     borderColor: '#2d2d2d',
     buttonColor: '#fff',
@@ -13,6 +14,7 @@ const themes = {
   dark: {
     textColorSecondary: '#606984',
     buttonBackground: '#56a7e1',
+    buttonBackgroundHover: '#3c8cc6',
     inputBackground: '#282c37',
     borderColor: '#393f4f',
     buttonColor: '#fff',
@@ -21,6 +23,7 @@ const themes = {
   light: {
     textColorSecondary: '#687a86',
     buttonBackground: '#56a7e1',
+    buttonBackgroundHover: '#3c8cc6',
     inputBackground: '#f6f8f9',
     borderColor: '#dbdfe4',
     buttonColor: '#fff',

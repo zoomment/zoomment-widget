@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ContentBubbleContainer = styled.div`
   min-height: 50px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,30 +11,27 @@ export const ContentBubbleContainer = styled.div`
 export const ContentBubble = styled.button`
   border: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
   margin: 4px;
-  border-radius: 10px;
-  color: #555555;
-  background: #f2f2f2;
+  border-radius: 4px;
   font-size: 20px;
   user-select: none;
   line-height: 1;
   display: flex;
   align-items: center;
+  color: ${props => props.theme.textColor};
+  background: ${props => props.theme.inputBackground};
 
   &:hover {
-    background: #cbe9ff;
+    color: ${props => props.theme.buttonColor};
+    background: ${props => props.theme.buttonBackground};
   }
 
   ${props =>
     props.$selected &&
     `
-      background: #56a7e1;
-      color: white;
-      &:hover {
-        background: #56a7e1;
-        color: white;
-      }
+      background: ${props.theme.buttonBackground};
+      color: ${props.theme.buttonColor};
   `}
 `;
 

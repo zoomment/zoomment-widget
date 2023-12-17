@@ -5,7 +5,9 @@ import ReactionsProvider from 'providers/Reactions';
 import LanguageProvider from 'providers/Language';
 import ThemeProvider from 'providers/Theme';
 
-import CommentsComponent from './App';
+import Editor from 'components/Editor';
+import Comments from 'components/Comments';
+import Footer from 'components/Footer';
 import ReactionsComponent from './components/Reactions';
 
 const commentsElement = document.getElementById('foo-comments');
@@ -25,8 +27,10 @@ if (commentsElement) {
           </ReactionsProvider>
         )}
         <CommentsProvider api={api}>
-          <CommentsComponent />
+          <Editor />
+          <Comments />
         </CommentsProvider>
+        <Footer />
       </LanguageProvider>
     </ThemeProvider>,
     commentsElement
