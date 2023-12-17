@@ -1,6 +1,6 @@
 # FooComments
 
-Comments and reactions for your website with less than 300kb.💬👁️😀
+Comments and reactions for your website with less than 500kb.💬👁️😀
 
 ![screenshot comments](/images/light.png)
 
