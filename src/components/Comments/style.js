@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DeleteTwoTone } from '@ant-design/icons';
+import DeleteTwoTone from '@ant-design/icons/DeleteTwoTone';
 
 export const Title = styled.div`
   width: 100%;

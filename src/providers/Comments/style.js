@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CloseOutlined } from '@ant-design/icons';
+import CloseOutlined from '@ant-design/icons/CloseOutlined';
 
 export const ErrorMessage = styled.div`
   color: #fff;

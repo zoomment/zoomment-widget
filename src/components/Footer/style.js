@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HeartFilled } from '@ant-design/icons';
+import HeartFilled from '@ant-design/icons/HeartFilled';
 
 export const Container = styled.div`
   width: 100%;
