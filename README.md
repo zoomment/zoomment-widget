@@ -1,8 +1,7 @@
 # FooComments
 
-Comments, views and reactions for your website with less than 300kb.💬👁️😀
+Comments and reactions for your website with less than 300kb.💬👁️😀
 
-![screenshot reactions and views](/images/reactions-views-screenshot.png)
 ![screenshot comments](/images/light.png)
 
 ## Usage
@@ -17,15 +16,8 @@ Comments, views and reactions for your website with less than 300kb.💬👁️�
   id="foo-comments"
   data-theme="light"
   data-language="en"
-  data-api-url="{{YOUR_API_URL}}"
-></div>
-
-<!-- for the reactions and view count section -->
-<div
-  id="foo-reactions"
   data-emotions="❤️,😀,🪄,🥸,💡,🤔,💩,😢"
-  data-show-page-views="true"
-  data-api-url="{{YOUR_API_URL}}" 
+  data-api-url="{{YOUR_API_URL}}"
 ></div>
 
 <!-- the working script -->
@@ -36,18 +28,11 @@ Comments, views and reactions for your website with less than 300kb.💬👁️�
 
 Options can be passed via data attributes for comment section.
 
-| Attribute Name | Possible values     |
-| -------------- | ------------------- |
-| data-theme     | light, dark, black  |
-| data-language  | en, hy, hyw, ru, zh |
-
-
-| Attribute Name               | Values description                                     |
-| ---------------------------- | ------------------------------------------------------ |
-| data-emotions                | list comma separated emojis, leave empty if not needed |
-| data-api-url                 | optional, if specified in comment section              |
-| data-show-page-views         | optional, leave empty for removing page view count     |
-
+| Attribute Name | Possible values                                        |
+| -------------- | ------------------------------------------------------ |
+| data-theme     | light, dark, black                                     |
+| data-language  | en, hy, hyw, ru, zh                                    |
+| data-emotions  | list comma separated emojis, leave empty if not needed |
 
 ## CDN
 

@@ -6,44 +6,35 @@ import LanguageProvider from 'providers/Language';
 import ThemeProvider from 'providers/Theme';
 
 import CommentsComponent from './App';
-import ReactionsComponent from './ReactionsComponent';
+import ReactionsComponent from './components/Reactions';
 
-const CommentsElement = document.getElementById('foo-comments');
-const commentsAPI = CommentsElement?.getAttribute('data-api-url');
+const commentsElement = document.getElementById('foo-comments');
 
-if (CommentsElement) {
-  const theme = CommentsElement.getAttribute('data-theme');
-  const language = CommentsElement.getAttribute('data-language');
+if (commentsElement) {
+  const api = commentsElement.getAttribute('data-api-url');
+  const theme = commentsElement.getAttribute('data-theme');
+  const language = commentsElement.getAttribute('data-language');
+  const emotions = commentsElement.getAttribute('data-emotions')?.split(',');
 
   ReactDOM.render(
-    <CommentsProvider api={commentsAPI}>
-      <ThemeProvider theme={theme}>
-        <LanguageProvider language={language}>
+    <ThemeProvider theme={theme}>
+      <LanguageProvider language={language}>
+        {emotions && (
+          <ReactionsProvider api={api}>
+            <ReactionsComponent emotions={emotions} />
+          </ReactionsProvider>
+        )}
+        <CommentsProvider api={api}>
           <CommentsComponent />
-        </LanguageProvider>
-      </ThemeProvider>
-    </CommentsProvider>,
-    CommentsElement
+        </CommentsProvider>
+      </LanguageProvider>
+    </ThemeProvider>,
+    commentsElement
   );
 }
 
-const ReactionsElement = document.getElementById('foo-reactions');
-
-if (ReactionsElement) {
-  const emotions = ReactionsElement.getAttribute('data-emotions').split(',');
-  const reactionsAPI = ReactionsElement.getAttribute('data-api-url');
-  const showPageViews = ReactionsElement.getAttribute('data-show-page-views');
-
-  ReactDOM.render(
-    <ReactionsProvider api={commentsAPI || reactionsAPI}>
-      <ReactionsComponent emotions={emotions} showPageViews={showPageViews} />
-    </ReactionsProvider>,
-    ReactionsElement
-  );
-}
-
-if (!(ReactionsElement || CommentsElement)) {
+if (commentsElement) {
   console.error(
-    'No comment or reaction section found. Please refer to documentation to include them https://github.com/foo-comments/foo-comments-widget .'
+    'No comment section found. Please refer to documentation to include them https://github.com/foo-comments/foo-comments-widget .'
   );
 }
