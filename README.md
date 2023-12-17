@@ -1,6 +1,8 @@
 # FooComments
 
-![screenshot](/images/light.png)
+Comments and reactions for your website with less than 300kb.💬👁️😀
+
+![screenshot comments](/images/light.png)
 
 ## Usage
 
@@ -9,23 +11,28 @@
 3. Place the following code where you'd like FooComments to load:
 
 ```html
+<!-- for the comment section -->
 <div
   id="foo-comments"
   data-theme="light"
   data-language="en"
+  data-emotions="❤️,😀,🪄,🥸,💡,🤔,💩,😢"
   data-api-url="{{YOUR_API_URL}}"
 ></div>
+
+<!-- the working script -->
 <script src="{{YOUR_HOSTING_URL}}/foo-comments.min.js"></script>
 ```
 
 ## Options
 
-Options can be passed via data attributes.
+Options can be passed via data attributes for comment section.
 
-| Attribute Name | Possible values     |
-| -------------- | ------------------- |
-| data-theme     | light, dark, black  |
-| data-language  | en, hy, hyw, ru, zh |
+| Attribute Name | Possible values                                        |
+| -------------- | ------------------------------------------------------ |
+| data-theme     | light, dark, black                                     |
+| data-language  | en, hy, hyw, ru, zh                                    |
+| data-emotions  | list comma separated emojis, leave empty if not needed |
 
 ## CDN
 

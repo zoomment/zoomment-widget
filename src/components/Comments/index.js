@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
+
 import { useCommentsState, useCommentsDispatch } from 'providers/Comments';
 import { useTranslation } from 'react-i18next';
 
@@ -41,12 +42,12 @@ export default function Comments() {
         {state.comments.map(comment => (
           <Item key={comment._id}>
             <Avatar
-              src={`https://www.gravatar.com/avatar/${comment.owner?.gravatar}?d=monsterid`}
+              src={`https://www.gravatar.com/avatar/${comment.owner?.gravatar}?d=monsterid`}/*TODO: make this configurable, I like robohash also wavatar */
             />
             <Head>
               <Username>{comment.owner?.name}</Username>•
               <Date href={`${state.api}/comments/${comment._id}`}>
-                {moment(comment.createdAt).format('DD MMM YYYY - HH:mm')}
+                {dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}
               </Date>
             </Head>
             <Body>
