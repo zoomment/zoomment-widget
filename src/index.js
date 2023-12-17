@@ -37,7 +37,7 @@ if (commentsElement) {
   );
 }
 
-if (commentsElement) {
+if (!commentsElement) {
   console.error(
     'No comment section found. Please refer to documentation to include them https://github.com/foo-comments/foo-comments-widget .'
   );
