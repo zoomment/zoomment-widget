@@ -37,7 +37,7 @@ Options can be passed via data attributes for comment section.
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/FooComments/foo-comments-widget@1.0.4/docs/foo-comments.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/FooComments/foo-comments-widget@1.1.0/docs/foo-comments.min.js"></script>
 ```
 
 ## Development
