@@ -4,6 +4,7 @@ import CommentsProvider from 'providers/Comments';
 import ReactionsProvider from 'providers/Reactions';
 import LanguageProvider from 'providers/Language';
 import ThemeProvider from 'providers/Theme';
+import RequestProvider from 'providers/Requests';
 
 import Editor from 'components/Editor';
 import Comments from 'components/Comments';
@@ -20,18 +21,20 @@ if (commentsElement) {
 
   ReactDOM.render(
     <ThemeProvider theme={theme}>
-      <LanguageProvider language={language}>
-        {emotions && (
-          <ReactionsProvider api={api}>
-            <ReactionsComponent emotions={emotions} />
-          </ReactionsProvider>
-        )}
-        <CommentsProvider api={api}>
-          <Editor />
-          <Comments />
-        </CommentsProvider>
-        <Footer />
-      </LanguageProvider>
+      <RequestProvider apiUrl={api}>
+        <LanguageProvider language={language}>
+          {emotions && (
+            <ReactionsProvider>
+              <ReactionsComponent emotions={emotions} />
+            </ReactionsProvider>
+          )}
+          <CommentsProvider>
+            <Editor />
+            <Comments />
+          </CommentsProvider>
+          <Footer />
+        </LanguageProvider>
+      </RequestProvider>
     </ThemeProvider>,
     commentsElement
   );

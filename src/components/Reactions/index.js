@@ -1,6 +1,4 @@
 import React, { useEffect, useCallback } from 'react';
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import axios from 'axios';
 
 import { ContentBubbleContainer, ContentBubble, ContentBubbleCount } from './style';
 import { useReactionDispatch, useReactionState } from 'providers/Reactions';
@@ -14,12 +12,7 @@ function ReactionsComponent({ emotions }) {
   const onReact = useCallback(reaction => actions.react(reaction), []);
 
   useEffect(() => {
-    FingerprintJS.load().then(fp => {
-      fp.get().then(({ visitorId }) => {
-        axios.defaults.headers.common['fingerprint'] = visitorId;
-        actions.getReactions();
-      });
-    });
+    actions.getReactions();
   }, []);
 
   return (

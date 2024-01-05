@@ -1,14 +1,12 @@
-import React, { useReducer, useState } from 'react';
-import axios from 'axios';
-import { ErrorMessage, Close } from '../Comments/style';
+import React, { useReducer, useCallback } from 'react';
+import { useRequest } from 'providers/Requests';
 
 const ReactionStateContext = React.createContext(undefined);
 const ReactionDispatchContext = React.createContext(undefined);
 
 const initialState = {
   loading: true,
-  reactions: [],
-  api: ''
+  reactions: []
 };
 
 const reducer = (state, action) => {
@@ -46,41 +44,36 @@ export function useReactionDispatch() {
 }
 
 export default function ReactionProvider(props) {
-  const [error, setError] = useState('');
+  const request = useRequest();
 
-  const pageId = `${window.location.hostname}${window.location.pathname}`;
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     ...props
   });
 
-  const react = reaction => {
-    return axios
-      .post(`${props.api}/reactions`, { reaction, pageId })
-      .then(response =>
+  const react = useCallback(
+    reaction => {
+      return request.post(`/reactions`, { reaction }).then(response =>
         dispatch({
           type: 'REACT',
           payload: response.data
         })
-      )
-      .catch(response => Promise.reject(setError(response.message)));
-  };
+      );
+    },
+    [request]
+  );
 
-  const getReactions = () => {
-    return axios
-      .get(`${props.api}/reactions?pageId=${encodeURI(pageId)}`)
-      .then(response => dispatch({ type: 'GET_REACTIONS', payload: response.data }))
-      .catch(response => Promise.reject(setError(response.message)));
-  };
+  const getReactions = useCallback(() => {
+    const pageId = `${window.location.hostname}${window.location.pathname}`;
+
+    return request
+      .get(`/reactions?pageId=${encodeURI(pageId)}`)
+      .then(response => dispatch({ type: 'GET_REACTIONS', payload: response.data }));
+  }, [request]);
 
   return (
     <ReactionStateContext.Provider value={state}>
       <ReactionDispatchContext.Provider value={{ react, getReactions }}>
-        {error && (
-          <ErrorMessage>
-            {error} :( <Close onClick={() => setError('')} />
-          </ErrorMessage>
-        )}
         {props.children}
       </ReactionDispatchContext.Provider>
     </ReactionStateContext.Provider>

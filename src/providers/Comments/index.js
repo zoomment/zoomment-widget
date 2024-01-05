@@ -1,14 +1,12 @@
-import React, { useReducer, useState } from 'react';
-import { ErrorMessage, Close } from './style';
-import axios from 'axios';
+import React, { useReducer, useCallback } from 'react';
+import { useRequest } from 'providers/Requests';
 
 const CommentsStateContext = React.createContext(undefined);
 const CommentsDispatchContext = React.createContext(undefined);
 
 const initialState = {
   loading: true,
-  comments: [],
-  api: ''
+  comments: []
 };
 
 const reducer = (state, action) => {
@@ -35,49 +33,48 @@ const reducer = (state, action) => {
 };
 
 export default function CommentsProvider(props) {
-  const [error, setError] = useState('');
-  const pageId = `${window.location.hostname}${window.location.pathname}`;
+  const request = useRequest();
+
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     ...props
   });
 
-  const addComment = data => {
-    return axios
-      .post(`${props.api}/comments`, { ...data, pageId })
-      .then(response =>
+  const addComment = useCallback(
+    data => {
+      return request.post(`/comments`, { ...data }).then(response =>
         dispatch({
           type: 'ADD_COMMENT',
           payload: { ...data, ...response.data }
         })
-      )
-      .catch(response => Promise.reject(setError(response.message)));
-  };
+      );
+    },
+    [request]
+  );
 
-  const removeComment = data => {
-    return axios
-      .delete(`${props.api}/comments/${data._id}?secret=${data.secret}`)
-      .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }))
-      .catch(response => Promise.reject(setError(response.message)));
-  };
+  const removeComment = useCallback(
+    data => {
+      return request
+        .delete(`/comments/${data._id}?secret=${data.secret}`)
+        .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }));
+    },
+    [request]
+  );
 
-  const getComments = () => {
-    return axios
-      .get(`${props.api}/comments?pageId=${encodeURI(pageId)}`)
-      .then(response => dispatch({ type: 'GET_COMMENTS', payload: response.data }))
-      .catch(response => Promise.reject(setError(response.message)));
-  };
+  const getComments = useCallback(() => {
+    const pageId = `${window.location.hostname}${window.location.pathname}`;
+
+    return request.get(`/comments?pageId=${encodeURI(pageId)}`).then(response => {
+      console.log('then response', response);
+      dispatch({ type: 'GET_COMMENTS', payload: response.data });
+    });
+  }, [request]);
 
   return (
     <CommentsStateContext.Provider value={state}>
       <CommentsDispatchContext.Provider
         value={{ addComment, getComments, removeComment }}
       >
-        {error && (
-          <ErrorMessage>
-            {error} :( <Close onClick={() => setError('')} />
-          </ErrorMessage>
-        )}
         {props.children}
       </CommentsDispatchContext.Provider>
     </CommentsStateContext.Provider>
