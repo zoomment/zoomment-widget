@@ -1,4 +1,4 @@
-# FooComments
+# Zoomment.com
 
 Comments and reactions for your website with less than 500kb.💬👁️😀
 
@@ -6,14 +6,14 @@ Comments and reactions for your website with less than 500kb.💬👁️😀
 
 ## Usage
 
-1. Download [foo-comments.min.js](/docs/foo-comments.min.js?raw=true)
-2. Clone and Run [foo-comments-server](https://github.com/tigransimonyan/foo-comments-server)
-3. Place the following code where you'd like FooComments to load:
+1. Download [zoomment.min.js](/docs/zoomment.min.js?raw=true)
+2. Clone and Run [zoomment-server](https://github.com/tigransimonyan/zoomment-server)
+3. Place the following code where you'd like Zoomment to load:
 
 ```html
 <!-- for the comment section -->
 <div
-  id="foo-comments"
+  id="zoomment"
   data-theme="light"
   data-language="en"
   data-emotions="❤️,😀,🪄,🥸,💡,🤔,💩,😢"
@@ -21,7 +21,7 @@ Comments and reactions for your website with less than 500kb.💬👁️😀
 ></div>
 
 <!-- the working script -->
-<script src="{{YOUR_HOSTING_URL}}/foo-comments.min.js"></script>
+<script src="{{YOUR_HOSTING_URL}}/zoomment.min.js"></script>
 ```
 
 ## Options
@@ -37,7 +37,7 @@ Options can be passed via data attributes for comment section.
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/FooComments/foo-comments-widget@1.1.0/docs/foo-comments.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/zoomment/zoomment-widget@1.1.0/docs/zoomment.min.js"></script>
 ```
 
 ## Development
@@ -46,8 +46,8 @@ Options can be passed via data attributes for comment section.
 2. Clone the repository and install dependencies:
 
 ```
-$ git clone https://github.com/FooComments/foo-comments-widget.git
-$ cd foo-comments-widget
+$ git clone https://github.com/zoomment/zoomment-widget.git
+$ cd zoomment-widget
 $ npm install
 ```
 
@@ -78,8 +78,8 @@ Request Body:
 ```
 {
   "body": "Hello!",
-  "pageId: "foocomments.github.io/foo-comments-widget/page-1",
-  "pageUrl: "https://foocomments.github.io/foo-comments-widget/page-1"
+  "pageId: "zoomment.github.io/zoomment-widget/page-1",
+  "pageUrl: "https://zoomment.github.io/zoomment-widget/page-1"
   "owner": {
     "name": "Bob",
     "email": "test@gmail.com"

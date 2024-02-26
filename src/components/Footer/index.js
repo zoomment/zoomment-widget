@@ -8,11 +8,8 @@ export default function Footer() {
   return (
     <Container>
       {t('POWERED_BY')}
-      <Link
-        href="https://github.com/FooComments/foo-comments-widget"
-        target="_blanck"
-      >
-        FooComments
+      <Link href="https://zoomment.com" target="_blanck">
+        zoomment.com
       </Link>
       <Heart />
     </Container>

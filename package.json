@@ -1,8 +1,8 @@
 {
-  "name": "foo-comments-widget",
+  "name": "zoomment-widget",
   "version": "1.0.0",
   "description": "",
-  "main": "docs/foo-comments.min.js",
+  "main": "docs/zoomment.min.js",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@fingerprintjs/fingerprintjs": "^3.4.2",
@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "parcel -d tmp index.html",
-    "build": "parcel build  --no-source-maps --no-content-hash -d docs -o foo-comments.min.js src/index.js",
+    "build": "parcel build  --no-source-maps --no-content-hash -d docs -o zoomment.min.js src/index.js",
     "help": "parcel build --help"
   },
   "keywords": [],
