@@ -11,19 +11,21 @@ import Comments from 'components/Comments';
 import Footer from 'components/Footer';
 import ReactionsComponent from './components/Reactions';
 
-const commentsElement = document.getElementById('foo-comments');
+import { parseEmotions } from './utils/emotions';
+
+const commentsElement = document.getElementById('zoomment');
 
 if (commentsElement) {
   const api = commentsElement.getAttribute('data-api-url');
   const theme = commentsElement.getAttribute('data-theme');
   const language = commentsElement.getAttribute('data-language');
-  const emotions = commentsElement.getAttribute('data-emotions')?.split(',');
+  const emotions = parseEmotions(commentsElement.getAttribute('data-emotions'));
 
   ReactDOM.render(
     <ThemeProvider theme={theme}>
       <RequestProvider apiUrl={api}>
         <LanguageProvider language={language}>
-          {emotions && (
+          {emotions.length > 0 && (
             <ReactionsProvider>
               <ReactionsComponent emotions={emotions} />
             </ReactionsProvider>
@@ -42,6 +44,6 @@ if (commentsElement) {
 
 if (!commentsElement) {
   console.error(
-    'No comment section found. Please refer to documentation to include them https://github.com/foo-comments/foo-comments-widget .'
+    'No comment section found. Please refer to documentation to include them https://github.com/zoomment/zoomment-widget .'
   );
 }
