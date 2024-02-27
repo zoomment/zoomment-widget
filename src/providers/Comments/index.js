@@ -65,7 +65,6 @@ export default function CommentsProvider(props) {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
 
     return request.get(`/comments?pageId=${encodeURI(pageId)}`).then(response => {
-      console.log('then response', response);
       dispatch({ type: 'GET_COMMENTS', payload: response.data });
     });
   }, [request]);

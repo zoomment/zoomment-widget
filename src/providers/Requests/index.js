@@ -1,7 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
-import FingerprintJS, { load } from '@fingerprintjs/fingerprintjs';
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { ErrorMessage, Close } from '../Comments/style';
+import { Preloader } from './style';
+import { useTranslation } from 'react-i18next';
 
 const RequestContext = React.createContext(undefined);
 
@@ -16,6 +18,7 @@ export function useRequest() {
 export default function RequestProvider(props) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   const instance = useMemo(() => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
@@ -62,7 +65,7 @@ export default function RequestProvider(props) {
           {error} <Close onClick={() => setError('')} />
         </ErrorMessage>
       )}
-      {loading ? 'Loading...' : props.children}
+      {loading ? <Preloader /> : props.children}
     </RequestContext.Provider>
   );
 }

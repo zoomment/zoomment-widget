@@ -23,8 +23,8 @@ if (commentsElement) {
 
   ReactDOM.render(
     <ThemeProvider theme={theme}>
-      <RequestProvider apiUrl={api}>
-        <LanguageProvider language={language}>
+      <LanguageProvider language={language}>
+        <RequestProvider apiUrl={api}>
           {emotions.length > 0 && (
             <ReactionsProvider>
               <ReactionsComponent emotions={emotions} />
@@ -35,8 +35,8 @@ if (commentsElement) {
             <Comments />
           </CommentsProvider>
           <Footer />
-        </LanguageProvider>
-      </RequestProvider>
+        </RequestProvider>
+      </LanguageProvider>
     </ThemeProvider>,
     commentsElement
   );
