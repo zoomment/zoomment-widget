@@ -42,13 +42,11 @@ export default function Comments() {
         {state.comments.map(comment => (
           <Item key={comment._id}>
             <Avatar
-              src={`https://www.gravatar.com/avatar/${comment.owner?.gravatar}?d=monsterid`}/*TODO: make this configurable, I like robohash also wavatar */
+              src={`https://www.gravatar.com/avatar/${comment.owner?.gravatar}?d=monsterid`} /*TODO: make this configurable, I like robohash also wavatar */
             />
             <Head>
               <Username>{comment.owner?.name}</Username>•
-              <Date href={`${state.api}/comments/${comment._id}`}>
-                {dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}
-              </Date>
+              <Date>{dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
             </Head>
             <Body>
               {comment.body}

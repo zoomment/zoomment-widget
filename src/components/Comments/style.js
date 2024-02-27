@@ -67,17 +67,13 @@ export const Body = styled.div`
   color: ${props => props.theme.textColor};
 `;
 
-export const Date = styled.a`
+export const Date = styled.span`
   font-size: 12px;
   font-weight: 500;
   margin-left: 5px;
   letter-spacing: 0px;
   text-decoration: none;
   color: ${props => props.theme.textColorSecondary};
-  &:hover {
-    color: inherit;
-    text-decoration: underline;
-  }
 `;
 
 export const NoResult = styled.div`
