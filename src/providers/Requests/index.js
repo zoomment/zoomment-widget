@@ -3,7 +3,6 @@ import axios from 'axios';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { ErrorMessage, Close } from '../Comments/style';
 import { Preloader } from './style';
-import { useTranslation } from 'react-i18next';
 
 const RequestContext = React.createContext(undefined);
 
@@ -18,13 +17,12 @@ export function useRequest() {
 export default function RequestProvider(props) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation();
 
   const instance = useMemo(() => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
 
     return axios.create({
-      baseURL: props.apiUrl,
+      baseURL: process.env.REACT_APP_API_URL,
       transformRequest: [
         function (data) {
           return {

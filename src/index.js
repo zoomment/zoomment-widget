@@ -16,7 +16,6 @@ import { parseEmotions } from './utils/emotions';
 const commentsElement = document.getElementById('zoomment');
 
 if (commentsElement) {
-  const api = commentsElement.getAttribute('data-api-url');
   const theme = commentsElement.getAttribute('data-theme');
   const language = commentsElement.getAttribute('data-language');
   const emotions = parseEmotions(commentsElement.getAttribute('data-emotions'));
@@ -24,7 +23,7 @@ if (commentsElement) {
   ReactDOM.render(
     <ThemeProvider theme={theme}>
       <LanguageProvider language={language}>
-        <RequestProvider apiUrl={api}>
+        <RequestProvider>
           {emotions.length > 0 && (
             <ReactionsProvider>
               <ReactionsComponent emotions={emotions} />

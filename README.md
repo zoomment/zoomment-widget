@@ -17,7 +17,6 @@ Comments and reactions for your website with less than 500kb.💬👁️😀
   data-theme="light"
   data-language="en"
   data-emotions="❤️,😀,🪄,🥸,💡,🤔,💩,😢"
-  data-api-url="{{YOUR_API_URL}}"
 ></div>
 
 <!-- the working script -->

@@ -5,3 +5,4 @@ tmp
 yarn.lock
 dist
 yarn-error.log
+.env
