@@ -6,6 +6,8 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@fingerprintjs/fingerprintjs": "^3.4.2",
+    "@parcel/config-default": "^2.12.0",
+    "@parcel/transformer-typescript-tsc": "^2.12.0",
     "axios": "^1.6.0",
     "dayjs": "^1.11.9",
     "i18next": "^19.8.3",
@@ -20,12 +22,22 @@
     "@babel/preset-env": "^7.22.9",
     "babel-core": "^6.26.3",
     "babel-plugin-module-resolver": "^4.1.0",
-    "parcel-bundler": "^1.12.4"
+    "buffer": "^6.0.3",
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
   },
   "scripts": {
-    "start": "parcel -d tmp index.html",
-    "build": "parcel build  --no-source-maps --no-content-hash -d docs -o zoomment.min.js src/index.js",
+    "start": "parcel index.html",
+    "build": "parcel build --no-source-maps --no-content-hash --dist-dir docs src/index.js",
     "help": "parcel build --help"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "targets": {
+    "default": {
+      "engines": {
+        "browsers": "> 0.5%, last 2 versions, not dead"
+      }
+    }
   },
   "keywords": [],
   "author": "",
