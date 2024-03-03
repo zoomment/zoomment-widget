@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import i18n from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import en from 'locales/en.json';
@@ -25,7 +25,17 @@ i18n.use(initReactI18next).init({
   }
 });
 
-export default function LanguageProvider(props) {
-  i18n.changeLanguage(props.language);
+type Props = {
+  children: React.ReactNode;
+  language: string | null;
+};
+
+export default function LanguageProvider(props: Props) {
+  useEffect(() => {
+    if (props.language) {
+      i18n.changeLanguage(props.language);
+    }
+  }, [props.language]);
+
   return <I18nextProvider i18n={i18n}>{props.children}</I18nextProvider>;
 }

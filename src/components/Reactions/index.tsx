@@ -3,13 +3,17 @@ import React, { useEffect, useCallback } from 'react';
 import { ContentBubbleContainer, ContentBubble, ContentBubbleCount } from './style';
 import { useReactionDispatch, useReactionState } from 'providers/Reactions';
 
-function ReactionsComponent({ emotions }) {
+type Props = {
+  emotions: string[];
+};
+
+function ReactionsComponent({ emotions }: Props) {
   const reactionsState = useReactionState();
   const actions = useReactionDispatch();
 
   const { aggregation, userReaction } = reactionsState?.reactions || {};
 
-  const onReact = useCallback(reaction => actions.react(reaction), []);
+  const onReact = useCallback((reaction: string) => actions.react(reaction), []);
 
   useEffect(() => {
     actions.getReactions();

@@ -10,12 +10,12 @@ export default function Editor() {
   const [name, setName] = useState(lscache.get('name') || '');
   const [email, setEmail] = useState(lscache.get('email') || '');
 
-  const form = useRef();
-  const submit = useRef();
+  const form: React.RefObject<HTMLFormElement> = useRef(null);
+  const submit: React.RefObject<HTMLButtonElement> = useRef(null);
   const { t } = useTranslation();
   const actions = useCommentsDispatch();
 
-  const onValideSubmit = e => {
+  const onValidSubmit: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
     setLoading(true);
     actions
@@ -34,22 +34,22 @@ export default function Editor() {
       });
   };
 
-  const onEnter = e => {
+  const onEnter = (e: React.KeyboardEvent) => {
     if (e.keyCode == 13 && (e.metaKey || e.ctrlKey)) {
-      submit.current.click();
+      submit.current?.click();
     }
   };
 
   useLayoutEffect(() => {
-    form.current.addEventListener('keydown', onEnter);
+    form.current?.addEventListener('keydown', onEnter);
     return () => {
-      form.current.removeEventListener('keydown', onEnter);
+      form.current?.removeEventListener('keydown', onEnter);
     };
   }, [form.current]);
 
   return (
     <Container>
-      <Form ref={form} onSubmit={onValideSubmit}>
+      <Form ref={form} onSubmit={onValidSubmit}>
         <Textarea
           onChange={e => setBody(e.target.value)}
           placeholder={t('COMMENT_PLACEHOLDER')}
