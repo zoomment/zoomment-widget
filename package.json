@@ -2,7 +2,7 @@
   "name": "zoomment-widget",
   "version": "1.0.0",
   "description": "",
-  "main": "docs/zoomment.min.js",
+
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@fingerprintjs/fingerprintjs": "^3.4.2",
@@ -28,17 +28,18 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build --no-source-maps --no-content-hash --dist-dir docs src/index.js",
+    "build": "parcel build --no-source-maps --no-content-hash --target modern --dist-dir docs src/index.js",
     "help": "parcel build --help"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "modern": "docs/zoomment.min.js",
   "targets": {
-    "default": {
+    "modern": {
       "engines": {
-        "browsers": "> 0.5%, last 2 versions, not dead"
+        "browsers": "Chrome 80"
       }
     }
   },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "keywords": [],
   "author": "",
   "license": "ISC"
