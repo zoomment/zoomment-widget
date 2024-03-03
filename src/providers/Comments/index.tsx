@@ -1,15 +1,45 @@
 import React, { useReducer, useCallback } from 'react';
 import { useRequest } from 'providers/Requests';
 
-const CommentsStateContext = React.createContext(undefined);
-const CommentsDispatchContext = React.createContext(undefined);
+type Comment = {
+  _id: string;
+  secret: string;
+  createdAt: Date;
+  body: string;
+  owner: {
+    gravatar: string;
+    email: string;
+    name: string;
+  };
+};
+
+type CommentsState = {
+  loading: boolean;
+  comments: Comment[];
+};
+
+type CommentsAction =
+  | { type: 'ADD_COMMENT'; payload: Comment }
+  | { type: 'GET_COMMENTS'; payload: Comment[] }
+  | { type: 'REMOVE_COMMENT'; payload: Partial<Comment> };
+
+type CommentsDispatch = {
+  addComment: (data: Partial<Comment>) => Promise<void>;
+  removeComment: (data: Comment) => Promise<void>;
+  getComments: () => Promise<void>;
+};
+
+const CommentsStateContext = React.createContext<CommentsState | undefined>(undefined);
+const CommentsDispatchContext = React.createContext<CommentsDispatch | undefined>(
+  undefined
+);
 
 const initialState = {
   loading: true,
   comments: []
 };
 
-const reducer = (state, action) => {
+const reducer = (state: CommentsState, action: CommentsAction) => {
   switch (action.type) {
     case 'ADD_COMMENT':
       return {
@@ -32,16 +62,19 @@ const reducer = (state, action) => {
   }
 };
 
-export default function CommentsProvider(props) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function CommentsProvider(props: Props) {
   const request = useRequest();
 
   const [state, dispatch] = useReducer(reducer, {
-    ...initialState,
-    ...props
+    ...initialState
   });
 
   const addComment = useCallback(
-    data => {
+    (data: Partial<Comment>) => {
       return request.post(`/comments`, { ...data }).then(response =>
         dispatch({
           type: 'ADD_COMMENT',
@@ -53,7 +86,7 @@ export default function CommentsProvider(props) {
   );
 
   const removeComment = useCallback(
-    data => {
+    (data: Partial<Comment>) => {
       return request
         .delete(`/comments/${data._id}?secret=${data.secret}`)
         .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }));

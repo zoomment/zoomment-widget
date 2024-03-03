@@ -23,7 +23,9 @@ export default function Comments() {
   const actions = useCommentsDispatch();
   const { t } = useTranslation();
 
-  useEffect(() => actions.getComments(), []);
+  useEffect(() => {
+    actions.getComments();
+  }, []);
 
   if (state.loading) {
     return <NoResult>{t('LOADING')}</NoResult>;

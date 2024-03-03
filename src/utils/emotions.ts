@@ -1,4 +1,4 @@
-export const parseEmotions = str => {
+export const parseEmotions = (str: string | null) => {
   if (!str) return [];
 
   const array = String(str).split(',');

@@ -9,7 +9,10 @@ export const ContentBubbleContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const ContentBubble = styled.button`
+export const ContentBubble =
+  styled.button <
+  { $selected: boolean } >
+  `
   border: none;
   cursor: pointer;
   padding: 8px;

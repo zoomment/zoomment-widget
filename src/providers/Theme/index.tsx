@@ -29,9 +29,14 @@ const themes = {
     buttonColor: '#fff',
     textColor: '#2a2e2e'
   }
+} as const;
+
+type Props = {
+  children: React.ReactNode;
+  theme: string | null;
 };
 
-export default function Theme(props) {
-  const theme = themes[props.theme] || themes.light;
+export default function Theme(props: Props) {
+  const theme = themes[props.theme || 'light'];
   return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
 }

@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { ErrorMessage, Close } from '../Comments/style';
 import { Preloader } from './style';
 
-const RequestContext = React.createContext(undefined);
+const RequestContext = React.createContext<AxiosInstance | undefined>(undefined);
 
 export function useRequest() {
   const context = React.useContext(RequestContext);
@@ -14,7 +14,11 @@ export function useRequest() {
   return context;
 }
 
-export default function RequestProvider(props) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function RequestProvider(props: Props) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -42,7 +46,7 @@ export default function RequestProvider(props) {
         ...axios.defaults.transformResponse
       ]
     });
-  }, [axios, props.baseURL]);
+  }, [axios]);
 
   useEffect(() => {
     if (instance) {

@@ -1,15 +1,44 @@
 import React, { useReducer, useCallback } from 'react';
 import { useRequest } from 'providers/Requests';
 
-const ReactionStateContext = React.createContext(undefined);
-const ReactionDispatchContext = React.createContext(undefined);
-
-const initialState = {
-  loading: true,
-  reactions: []
+type State = {
+  loading: boolean;
+  reactions: {
+    aggregation: {
+      _id: string;
+      count: number;
+    }[];
+    userReaction: {
+      reaction: string;
+    };
+  };
 };
 
-const reducer = (state, action) => {
+type ReactionDispatch = {
+  react: (reaction: string) => void;
+  getReactions: () => void;
+};
+
+type Action =
+  | { type: 'REACT'; payload: State['reactions'] }
+  | { type: 'GET_REACTIONS'; payload: State['reactions'] };
+
+const ReactionStateContext = React.createContext<State | undefined>(undefined);
+const ReactionDispatchContext = React.createContext<ReactionDispatch | undefined>(
+  undefined
+);
+
+const initialState: State = {
+  loading: true,
+  reactions: {
+    aggregation: [],
+    userReaction: {
+      reaction: ''
+    }
+  }
+};
+
+const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case 'REACT':
       return {
@@ -43,16 +72,19 @@ export function useReactionDispatch() {
   return context;
 }
 
-export default function ReactionProvider(props) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function ReactionProvider(props: Props) {
   const request = useRequest();
 
   const [state, dispatch] = useReducer(reducer, {
-    ...initialState,
-    ...props
+    ...initialState
   });
 
   const react = useCallback(
-    reaction => {
+    (reaction: string) => {
       return request.post(`/reactions`, { reaction }).then(response =>
         dispatch({
           type: 'REACT',
