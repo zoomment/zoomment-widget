@@ -6,3 +6,4 @@ yarn.lock
 dist
 yarn-error.log
 .env
+.env.production
