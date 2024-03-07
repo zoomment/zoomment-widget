@@ -36,7 +36,7 @@ Options can be passed via data attributes for comment section.
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/zoomment/zoomment-widget@1.1.0/docs/zoomment.min.js"></script>
+<script src="https://cdn.zoomment.com/zoomment.min.js"></script>
 ```
 
 ## Development
@@ -62,76 +62,4 @@ Open http://localhost:1234 to view it in the browser.
 
 ```
 $ npm run build
-```
-
-## API Reference
-
-### Add Comment
-
-```
-POST {{YOUR_API_URL}}/api/comments
-```
-
-Request Body:
-
-```
-{
-  "body": "Hello!",
-  "pageId: "zoomment.github.io/zoomment-widget/page-1",
-  "pageUrl: "https://zoomment.github.io/zoomment-widget/page-1"
-  "owner": {
-    "name": "Bob",
-    "email": "test@gmail.com"
-  }
-}
-```
-
-Response Body:
-
-```
-{
-  "_id": "5fa538f82378f23944454737",
-  "secret": "61e68a4caea667b4a628e45a2ac3dc216e0b8327",
-  "createdAt": "2020-11-06T11:52:24.449Z",
-  "owner": {
-    "gravatar": "21ad0bd836b90d08f4cf640b4c298e7c",
-    "name": "Bob"
-  },
-  ...
-}
-```
-
-### Get Comments
-
-```
-GET {{YOUR_API_URL}}/api/comments?pageId={{PAGE_ID}}
-```
-
-Response Body:
-
-```
-[
-  {
-    "_id": "5fa3fa28c5eb4a2475dd0768",
-    "body": "Hello!",
-    "createdAt": "2020-11-05T13:12:08.513Z",
-    "owner": {
-      "gravatar": "21ad0bd836b90d08f4cf640b4c298e7c",
-      "name": "Bob"
-    },
-  },
-  ...
-]
-```
-
-### Delete Comment
-
-```
-DELETE {{YOUR_API_URL}}/api/comments/{{COMMENT_ID}}?secret={{COMMENT_SECRET}}
-```
-
-Response Body:
-
-```
-Ok
 ```
