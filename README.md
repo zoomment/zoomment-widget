@@ -20,7 +20,7 @@ Comments and reactions for your website with less than 500kb.💬👁️😀
 ></div>
 
 <!-- the working script -->
-<script src="{{YOUR_HOSTING_URL}}/zoomment.min.js"></script>
+<script src="https://cdn.zoomment.com/zoomment.min.js"></script>
 ```
 
 ## Options
@@ -32,12 +32,6 @@ Options can be passed via data attributes for comment section.
 | data-theme     | light, dark, black                                     |
 | data-language  | en, hy, hyw, ru, zh                                    |
 | data-emotions  | list comma separated emojis, leave empty if not needed |
-
-## CDN
-
-```html
-<script src="https://cdn.zoomment.com/zoomment.min.js"></script>
-```
 
 ## Development
 
