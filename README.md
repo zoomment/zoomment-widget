@@ -6,9 +6,7 @@ Comments and reactions for your website with less than 500kb.💬👁️😀
 
 ## Usage
 
-1. Download [zoomment.min.js](/docs/zoomment.min.js?raw=true)
-2. Clone and Run [zoomment-server](https://github.com/tigransimonyan/zoomment-server)
-3. Place the following code where you'd like Zoomment to load:
+Place the following code where you'd like Zoomment to load:
 
 ```html
 <!-- for the comment section -->
