@@ -1,8 +1,7 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import axios, { AxiosInstance } from 'axios';
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { ClientJS } from 'clientjs';
 import { ErrorMessage, Close } from '../Comments/style';
-import { Preloader } from './style';
 
 const RequestContext = React.createContext<AxiosInstance | undefined>(undefined);
 
@@ -20,13 +19,17 @@ type Props = {
 
 export default function RequestProvider(props: Props) {
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
 
   const instance = useMemo(() => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
+    const client = new ClientJS();
+    const fingerprint = client.getFingerprint();
 
     return axios.create({
       baseURL: process.env.REACT_APP_API_URL,
+      headers: {
+        fingerprint
+      },
       transformRequest: [
         function (data) {
           return {
@@ -48,18 +51,6 @@ export default function RequestProvider(props: Props) {
     });
   }, [axios]);
 
-  useEffect(() => {
-    if (instance) {
-      setLoading(true);
-      FingerprintJS.load().then(fp => {
-        fp.get().then(({ visitorId }) => {
-          instance.defaults.headers['fingerprint'] = visitorId;
-          setLoading(false);
-        });
-      });
-    }
-  }, [instance]);
-
   return (
     <RequestContext.Provider value={instance}>
       {error && (
@@ -67,7 +58,7 @@ export default function RequestProvider(props: Props) {
           {error} <Close onClick={() => setError('')} />
         </ErrorMessage>
       )}
-      {loading ? <Preloader /> : props.children}
+      {props.children}
     </RequestContext.Provider>
   );
 }
