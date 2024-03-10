@@ -1,27 +1,16 @@
 import React, { useEffect } from 'react';
-import dayjs from 'dayjs';
-
 import { useCommentsState, useCommentsDispatch } from 'providers/Comments';
 import { useTranslation } from 'react-i18next';
+import Editor from '../Editor';
+import Comment from '../Comment';
 
-import {
-  List,
-  Item,
-  Username,
-  Body,
-  Date,
-  Head,
-  Title,
-  Container,
-  NoResult,
-  Delete,
-  Avatar
-} from './style';
+import { List, Title, Container, NoResult, Nested } from './style';
 
 export default function Comments() {
   const state = useCommentsState();
   const actions = useCommentsDispatch();
   const { t } = useTranslation();
+  const parentId = state.replayTo?.parentId || state.replayTo?._id;
 
   useEffect(() => {
     actions.getComments();
@@ -42,24 +31,20 @@ export default function Comments() {
       </Title>
       <List>
         {state.comments.map(comment => (
-          <Item key={comment._id}>
-            <Avatar
-              src={`https://www.gravatar.com/avatar/${comment.owner?.gravatar}?d=monsterid`} /*TODO: make this configurable, I like robohash also wavatar */
-            />
-            <Head>
-              <Username>{comment.owner?.name}</Username>•
-              <Date>{dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
-            </Head>
-            <Body>
-              {comment.body}
-              {comment.secret && (
-                <Delete
-                  twoToneColor="red"
-                  onClick={() => actions.removeComment(comment)}
-                />
-              )}
-            </Body>
-          </Item>
+          <Comment comment={comment}>
+            {comment?.replies?.length > 0 && (
+              <Nested>
+                {comment.replies.map(reply => (
+                  <Comment comment={reply} />
+                ))}
+              </Nested>
+            )}
+            {parentId === comment._id && (
+              <Nested>
+                <Editor replyTo={state.replayTo} />
+              </Nested>
+            )}
+          </Comment>
         ))}
       </List>
     </Container>

@@ -7,5 +7,7 @@
 	"EMAIL": "电子邮件*",
 	"POST": "发布",
 	"POWERED_BY": "供电",
-	"LOADING": "载入中..."
+	"LOADING": "载入中...",
+	"REPLY": "回复",
+	"DELETE": "删除"
 }

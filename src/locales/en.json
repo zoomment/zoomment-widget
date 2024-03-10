@@ -7,5 +7,7 @@
 	"EMAIL": "Email*",
 	"POST": "Post",
 	"POWERED_BY": "Powered by",
-	"LOADING": "Loading..."
+	"LOADING": "Loading...",
+	"REPLY": "Reply",
+	"DELETE": "Delete"
 }

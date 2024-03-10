@@ -1,13 +1,20 @@
 import React, { useReducer, useCallback } from 'react';
 import { useRequest } from 'providers/Requests';
 
-type Comment = {
+export type IComment = {
   _id: string;
   secret: string;
   createdAt: Date;
   body: string;
+  email: string;
+  author: string;
+  gravatar: string;
+  pageUrl: string;
+  parentId?: string;
+  // owner field deprecated
+  replies: IComment[];
   owner: {
-    gravatar: string;
+    gravatar?: string;
     email: string;
     name: string;
   };
@@ -15,18 +22,21 @@ type Comment = {
 
 type CommentsState = {
   loading: boolean;
-  comments: Comment[];
+  comments: IComment[];
+  replayTo?: IComment;
 };
 
 type CommentsAction =
-  | { type: 'ADD_COMMENT'; payload: Comment }
-  | { type: 'GET_COMMENTS'; payload: Comment[] }
-  | { type: 'REMOVE_COMMENT'; payload: Partial<Comment> };
+  | { type: 'REPLY_COMMENT'; payload?: IComment }
+  | { type: 'ADD_COMMENT'; payload: IComment }
+  | { type: 'GET_COMMENTS'; payload: IComment[] }
+  | { type: 'REMOVE_COMMENT'; payload: Partial<IComment> };
 
 type CommentsDispatch = {
-  addComment: (data: Partial<Comment>) => Promise<void>;
-  removeComment: (data: Comment) => Promise<void>;
+  addComment: (data: Partial<IComment>) => Promise<void>;
+  removeComment: (data: IComment) => Promise<void>;
   getComments: () => Promise<void>;
+  replay: (comment?: IComment) => void;
 };
 
 const CommentsStateContext = React.createContext<CommentsState | undefined>(undefined);
@@ -34,17 +44,31 @@ const CommentsDispatchContext = React.createContext<CommentsDispatch | undefined
   undefined
 );
 
-const initialState = {
+const initialState: CommentsState = {
   loading: true,
-  comments: []
+  comments: [],
+  replayTo: undefined
 };
 
 const reducer = (state: CommentsState, action: CommentsAction) => {
   switch (action.type) {
     case 'ADD_COMMENT':
+      if (!action.payload.parentId) {
+        return {
+          ...state,
+          comments: [...state.comments, action.payload]
+        };
+      }
       return {
         ...state,
-        comments: [action.payload, ...state.comments]
+        comments: state.comments.map(comment => {
+          if (comment._id !== action.payload.parentId) return comment;
+
+          return {
+            ...comment,
+            replies: [...comment.replies, action.payload]
+          };
+        })
       };
     case 'GET_COMMENTS':
       return {
@@ -53,9 +77,27 @@ const reducer = (state: CommentsState, action: CommentsAction) => {
         comments: action.payload
       };
     case 'REMOVE_COMMENT':
+      if (!action.payload.parentId) {
+        return {
+          ...state,
+          comments: state.comments.filter(comment => comment._id !== action.payload._id)
+        };
+      }
       return {
         ...state,
-        comments: state.comments.filter(comment => comment._id !== action.payload._id)
+        comments: state.comments.map(comment => {
+          if (comment._id !== action.payload.parentId) return comment;
+
+          return {
+            ...comment,
+            replies: comment.replies.filter(reply => reply._id !== action.payload._id)
+          };
+        })
+      };
+    case 'REPLY_COMMENT':
+      return {
+        ...state,
+        replayTo: action.payload
       };
     default:
       return state;
@@ -74,7 +116,7 @@ export default function CommentsProvider(props: Props) {
   });
 
   const addComment = useCallback(
-    (data: Partial<Comment>) => {
+    (data: Partial<IComment>) => {
       return request.post(`/comments`, { ...data }).then(response =>
         dispatch({
           type: 'ADD_COMMENT',
@@ -86,7 +128,7 @@ export default function CommentsProvider(props: Props) {
   );
 
   const removeComment = useCallback(
-    (data: Partial<Comment>) => {
+    (data: Partial<IComment>) => {
       return request
         .delete(`/comments/${data._id}?secret=${data.secret}`)
         .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }));
@@ -102,10 +144,14 @@ export default function CommentsProvider(props: Props) {
     });
   }, [request]);
 
+  const replay = useCallback((comment?: IComment) => {
+    dispatch({ type: 'REPLY_COMMENT', payload: comment });
+  }, []);
+
   return (
     <CommentsStateContext.Provider value={state}>
       <CommentsDispatchContext.Provider
-        value={{ addComment, getComments, removeComment }}
+        value={{ addComment, getComments, removeComment, replay }}
       >
         {props.children}
       </CommentsDispatchContext.Provider>

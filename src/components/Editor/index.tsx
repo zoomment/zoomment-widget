@@ -1,10 +1,14 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import lscache from 'lscache';
-import { useCommentsDispatch } from 'providers/Comments';
+import { useCommentsDispatch, IComment } from 'providers/Comments';
 import { Container, Textarea, Button, Footer, Input, Form } from './style';
 import { useTranslation } from 'react-i18next';
 
-export default function Editor() {
+type Props = {
+  replyTo?: IComment;
+};
+
+export default function Editor(props: Props) {
   const [body, setBody] = useState('');
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState(lscache.get('name') || '');
@@ -15,14 +19,27 @@ export default function Editor() {
   const { t } = useTranslation();
   const actions = useCommentsDispatch();
 
+  useEffect(() => {
+    if (props.replyTo) {
+      setBody(`@${props.replyTo.author} `);
+    }
+  }, [props.replyTo]);
+
   const onValidSubmit: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
     setLoading(true);
+
+    const parentId = props.replyTo?.parentId || props.replyTo?._id;
+
     actions
       .addComment({
         body,
+        email,
+        author: name,
+        // owner field deprecated
         owner: { name, email },
-        pageUrl: window.location.href
+        pageUrl: window.location.href,
+        parentId: parentId
       })
       .then(() => {
         setBody('');
@@ -34,16 +51,16 @@ export default function Editor() {
       });
   };
 
-  const onEnter = (e: React.KeyboardEvent) => {
+  const onEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.keyCode == 13 && (e.metaKey || e.ctrlKey)) {
       submit.current?.click();
     }
   };
 
   useLayoutEffect(() => {
-    form.current?.addEventListener('keydown', onEnter);
+    form.current?.addEventListener('keydown', onEnter as any);
     return () => {
-      form.current?.removeEventListener('keydown', onEnter);
+      form.current?.removeEventListener('keydown', onEnter as any);
     };
   }, [form.current]);
 

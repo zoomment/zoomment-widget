@@ -36,6 +36,7 @@ export const Textarea = styled.textarea`
   padding: 8px 10px;
   letter-spacing: 0.7px;
   box-sizing: border-box;
+  font-family: inherit;
   color: ${props => props.theme.textColor};
   background: ${props => props.theme.inputBackground};
 `;
@@ -49,6 +50,7 @@ export const Button = styled.button`
   appearance: none;
   box-shadow: none;
   font-weight: 700;
+  font-family: inherit;
   min-width: 150px;
   font-weight: 500;
   line-height: 1.1;
@@ -107,7 +109,7 @@ export const Input = styled.input`
   box-shadow: none;
   appearance: none;
   border-radius: 0;
-  letter-spacing: 0.5px;
+  font-family: inherit;
   box-sizing: border-box;
   color: ${props => props.theme.textColor};
   background: ${props => props.theme.inputBackground};
