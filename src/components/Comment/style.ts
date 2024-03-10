@@ -13,7 +13,7 @@ export const Avatar = styled.img`
   flex-shrink: 0;
   height: 40px;
   border-radius: 4px;
-  margin-right: 10px;
+  margin: 0 10px 0 0 !important;
 `;
 
 export const Head = styled.div`
