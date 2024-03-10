@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { ClientJS } from 'clientjs';
 import { ErrorMessage, Close } from '../Comments/style';
+import { FadeIn } from './style';
 
 const RequestContext = React.createContext<AxiosInstance | undefined>(undefined);
 
@@ -58,7 +59,7 @@ export default function RequestProvider(props: Props) {
           {error} <Close onClick={() => setError('')} />
         </ErrorMessage>
       )}
-      {props.children}
+      <FadeIn>{props.children}</FadeIn>
     </RequestContext.Provider>
   );
 }
