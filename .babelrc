@@ -1,8 +1,0 @@
-{
-  "presets": [],
-  "plugins": [
-    ["module-resolver", { 
-      "root": ["./src"] 
-    }]
-  ]
-}
