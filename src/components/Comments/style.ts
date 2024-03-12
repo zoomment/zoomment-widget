@@ -1,9 +1,4 @@
-import styled, { keyframes } from 'styled-components';
-
-const fadeIn = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-`;
+import styled from 'styled-components';
 
 export const Title = styled.div`
   width: 100%;
@@ -13,7 +8,7 @@ export const Title = styled.div`
   font-weight: 700;
   letter-spacing: 0px;
   color: ${props => props.theme.textColor};
-  border-bottom: 2px solid ${props => props.theme.borderColor};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
 `;
 
 export const Container = styled.div`

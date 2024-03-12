@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Item = styled.div`
   display: flex;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   &:last-child {
     margin-bottom: 0;
   }
@@ -37,7 +37,6 @@ export const Username = styled.div`
 export const Body = styled.div`
   font-size: 14px;
   font-weight: 400;
-  min-height: 24px;
   line-height: 1.5;
   letter-spacing: 0.3px;
   white-space: break-spaces;
@@ -66,7 +65,7 @@ export const Action = styled.button`
   &:hover,
   &:visited,
   &:focus {
-    color: ${props => props.theme.buttonBackground};
+    color: ${props => props.theme.buttonBackgroundHover};
   }
 `;
 

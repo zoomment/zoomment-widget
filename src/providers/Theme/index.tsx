@@ -4,8 +4,8 @@ import { ThemeProvider } from 'styled-components';
 const themes = {
   black: {
     textColorSecondary: '#afb0b1',
-    buttonBackground: '#56a7e1',
-    buttonBackgroundHover: '#3c8cc6',
+    buttonBackground: '#1677ff',
+    buttonBackgroundHover: '#4096ff',
     inputBackground: '#000',
     borderColor: '#2d2d2d',
     buttonColor: '#fff',
@@ -13,8 +13,8 @@ const themes = {
   },
   dark: {
     textColorSecondary: '#606984',
-    buttonBackground: '#56a7e1',
-    buttonBackgroundHover: '#3c8cc6',
+    buttonBackground: '#1677ff',
+    buttonBackgroundHover: '#4096ff',
     inputBackground: '#282c37',
     borderColor: '#393f4f',
     buttonColor: '#fff',
@@ -22,10 +22,10 @@ const themes = {
   },
   light: {
     textColorSecondary: '#687a86',
-    buttonBackground: '#56a7e1',
-    buttonBackgroundHover: '#3c8cc6',
+    buttonBackground: '#1677ff',
+    buttonBackgroundHover: '#4096ff',
     inputBackground: '#f6f8f9',
-    borderColor: '#dbdfe4',
+    borderColor: '#d9d9d9',
     buttonColor: '#fff',
     textColor: '#2a2e2e'
   }

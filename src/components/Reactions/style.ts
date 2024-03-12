@@ -9,14 +9,13 @@ export const ContentBubbleContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const ContentBubble =
-  styled.button <
-  { $selected: boolean } >
-  `
+export const ContentBubble = styled.button<{ $selected: boolean }>`
   border: none;
   cursor: pointer;
   padding: 8px;
   margin: 4px;
+  min-height: 36px;
+  min-width: 36px;
   border-radius: 4px;
   font-size: 20px;
   user-select: none;
@@ -28,7 +27,7 @@ export const ContentBubble =
 
   &:hover {
     color: ${props => props.theme.buttonColor};
-    background: ${props => props.theme.buttonBackground};
+    background: ${props => props.theme.buttonBackgroundHover};
   }
 
   ${props =>
