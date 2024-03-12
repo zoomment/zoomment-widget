@@ -29,7 +29,7 @@
   },
   "scripts": {
     "dev": "parcel index.html --no-cache",
-    "build": "parcel build --no-source-maps --no-content-hash --target modern --dist-dir docs src/index.tsx",
+    "build": "parcel build --no-cache --no-source-maps --no-content-hash --target modern --dist-dir docs src/index.tsx",
     "help": "parcel build --help"
   },
   "modern": "docs/zoomment.min.js",
