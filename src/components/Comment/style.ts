@@ -9,9 +9,9 @@ export const Item = styled.div`
 `;
 
 export const Avatar = styled.img`
-  width: 40px;
+  width: 35px;
+  height: 35px;
   flex-shrink: 0;
-  height: 40px;
   border-radius: 4px;
   margin: 0 10px 0 0 !important;
 `;
