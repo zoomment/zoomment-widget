@@ -33,5 +33,5 @@ export const NoResult = styled.div`
 `;
 
 export const Nested = styled.div`
-  margin-top: 20px;
+  margin-top: 12px;
 `;
