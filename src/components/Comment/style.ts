@@ -83,6 +83,8 @@ export const Reply = styled(Action)`
 
 export const Delete = styled(Action)`
   color: ${props => props.theme.textColorSecondary};
+  padding-top: 0;
+  padding-bottom: 0;
   &:hover,
   &:visited,
   &:focus {
