@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useCommentsState, useCommentsDispatch, IComment } from 'providers/Comments';
 import { useTranslation } from 'react-i18next';
-import { CheckCircleFilled } from '@ant-design/icons';
+import { CheckCircleFilled, DeleteOutlined, CommentOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 
 import {
@@ -9,9 +9,11 @@ import {
   Username,
   Body,
   Date,
-  Head,
+  Header,
+  HeaderActions,
   Avatar,
-  Action,
+  Reply,
+  Delete,
   Actions,
   Content
 } from './style';
@@ -36,15 +38,22 @@ export default function Comment({
         src={`https://www.gravatar.com/avatar/${gravatar}?d=monsterid`} /*TODO: make this configurable, I like robohash also wavatar */
       />
       <Content>
-        <Head>
+        <Header>
           <Username>
-            {author} {comment.isVerified && <CheckCircleFilled />}
+            {author} {comment.isVerified && <CheckCircleFilled />} •
+            <Date>{dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
           </Username>
-          •<Date>{dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
-        </Head>
+          <HeaderActions>
+            {comment.isOwn && (
+              <Delete onClick={() => actions.removeComment(comment)}>
+                <DeleteOutlined /> Delete
+              </Delete>
+            )}
+          </HeaderActions>
+        </Header>
         <Body>{comment.body}</Body>
         <Actions>
-          <Action
+          <Reply
             onClick={() => {
               if (state.replayTo?._id === comment._id) {
                 actions.replay(undefined);
@@ -53,11 +62,8 @@ export default function Comment({
               }
             }}
           >
-            {t('REPLY')}
-          </Action>
-          {(comment.isOwn || comment.secret) && (
-            <Action onClick={() => actions.removeComment(comment)}>{t('DELETE')}</Action>
-          )}
+            <CommentOutlined /> {t('REPLY')}
+          </Reply>
         </Actions>
         {children}
       </Content>
