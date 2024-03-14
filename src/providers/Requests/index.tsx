@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { ClientJS } from 'clientjs';
-import { getCookie } from 'react-use-cookie';
+import { getCookie, setCookie } from 'react-use-cookie';
 import { ErrorMessage, Close } from '../Comments/style';
 import { FadeIn } from './style';
 
@@ -27,11 +27,20 @@ type Props = {
 export default function RequestProvider(props: Props) {
   const [error, setError] = useState('');
 
+  const searchParams = new URL(window.location.href).searchParams;
+  const zoommentToken = searchParams.get('zoommentToken');
+  const token = zoommentToken || getCookie('zoommentToken');
+
+  useEffect(() => {
+    if (zoommentToken) {
+      setCookie('zoommentToken', zoommentToken);
+    }
+  }, [zoommentToken]);
+
   const instance = useMemo(() => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
     const client = new ClientJS();
     const fingerprint = client.getFingerprint();
-    const token = getCookie('token');
 
     return axios.create({
       baseURL: process.env.REACT_APP_API_URL,

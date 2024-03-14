@@ -31,11 +31,11 @@ export default function Comments() {
       </Title>
       <List>
         {state.comments.map(comment => (
-          <Comment comment={comment}>
+          <Comment key={comment._id} comment={comment}>
             {comment?.replies?.length > 0 && (
               <Nested>
                 {comment.replies.map(reply => (
-                  <Comment comment={reply} />
+                  <Comment key={reply._id} comment={reply} />
                 ))}
               </Nested>
             )}

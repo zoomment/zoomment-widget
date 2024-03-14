@@ -31,7 +31,7 @@ export default function Comment({
   const gravatar = comment.gravatar || comment.owner?.gravatar;
 
   return (
-    <Item key={comment._id}>
+    <Item>
       <Avatar
         src={`https://www.gravatar.com/avatar/${gravatar}?d=monsterid`} /*TODO: make this configurable, I like robohash also wavatar */
       />
