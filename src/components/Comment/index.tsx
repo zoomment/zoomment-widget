@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useCommentsState, useCommentsDispatch, IComment } from 'providers/Comments';
 import { useTranslation } from 'react-i18next';
+import { CheckCircleFilled } from '@ant-design/icons';
 import dayjs from 'dayjs';
 
 import {
@@ -36,8 +37,10 @@ export default function Comment({
       />
       <Content>
         <Head>
-          <Username>{author}</Username>•
-          <Date>{dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
+          <Username>
+            {author} {comment.isVerified && <CheckCircleFilled />}
+          </Username>
+          •<Date>{dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
         </Head>
         <Body>{comment.body}</Body>
         <Actions>
@@ -52,7 +55,7 @@ export default function Comment({
           >
             {t('REPLY')}
           </Action>
-          {comment.secret && (
+          {(comment.isOwn || comment.secret) && (
             <Action onClick={() => actions.removeComment(comment)}>{t('DELETE')}</Action>
           )}
         </Actions>

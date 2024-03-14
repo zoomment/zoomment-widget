@@ -5,6 +5,8 @@ export type IComment = {
   _id: string;
   secret: string;
   createdAt: Date;
+  isOwn: boolean;
+  isVerified: boolean;
   body: string;
   email: string;
   author: string;

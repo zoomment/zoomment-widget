@@ -24,6 +24,9 @@ export const Head = styled.div`
   align-items: center;
   flex-direction: row;
   color: ${props => props.theme.textColorSecondary};
+  svg {
+    color: green;
+  }
 `;
 
 export const Username = styled.div`

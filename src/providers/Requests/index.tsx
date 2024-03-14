@@ -3,6 +3,7 @@ import axios, { AxiosInstance } from 'axios';
 import { ClientJS } from 'clientjs';
 import { ErrorMessage, Close } from '../Comments/style';
 import { FadeIn } from './style';
+import { getCookie } from 'react-use-cookie';
 
 const RequestContext = React.createContext<AxiosInstance | undefined>(undefined);
 
@@ -25,11 +26,13 @@ export default function RequestProvider(props: Props) {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
     const client = new ClientJS();
     const fingerprint = client.getFingerprint();
+    const token = getCookie('token');
 
     return axios.create({
       baseURL: process.env.REACT_APP_API_URL,
       headers: {
-        fingerprint
+        fingerprint,
+        token
       },
       transformRequest: [
         function (data) {
