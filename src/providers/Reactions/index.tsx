@@ -77,7 +77,7 @@ type Props = {
 };
 
 export default function ReactionProvider(props: Props) {
-  const request = useRequest();
+  const { instance } = useRequest();
 
   const [state, dispatch] = useReducer(reducer, {
     ...initialState
@@ -85,23 +85,23 @@ export default function ReactionProvider(props: Props) {
 
   const react = useCallback(
     (reaction: string) => {
-      return request.post(`/reactions`, { reaction }).then(response =>
+      return instance.post(`/reactions`, { reaction }).then(response =>
         dispatch({
           type: 'REACT',
           payload: response.data
         })
       );
     },
-    [request]
+    [instance]
   );
 
   const getReactions = useCallback(() => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
 
-    return request
+    return instance
       .get(`/reactions?pageId=${encodeURI(pageId)}`)
       .then(response => dispatch({ type: 'GET_REACTIONS', payload: response.data }));
-  }, [request]);
+  }, [instance]);
 
   return (
     <ReactionStateContext.Provider value={state}>

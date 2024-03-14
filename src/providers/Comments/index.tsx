@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 import { useRequest } from 'providers/Requests';
 
 export type IComment = {
@@ -111,7 +111,7 @@ type Props = {
 };
 
 export default function CommentsProvider(props: Props) {
-  const request = useRequest();
+  const { instance, token } = useRequest();
 
   const [state, dispatch] = useReducer(reducer, {
     ...initialState
@@ -119,36 +119,43 @@ export default function CommentsProvider(props: Props) {
 
   const addComment = useCallback(
     (data: Partial<IComment>) => {
-      return request.post(`/comments`, { ...data }).then(response =>
+      return instance.post(`/comments`, { ...data }).then(response =>
         dispatch({
           type: 'ADD_COMMENT',
           payload: { ...data, ...response.data }
         })
       );
     },
-    [request]
+    [instance]
   );
 
   const removeComment = useCallback(
     (data: Partial<IComment>) => {
-      return request
+      return instance
         .delete(`/comments/${data._id}?secret=${data.secret}`)
         .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }));
     },
-    [request]
+    [instance]
   );
 
   const getComments = useCallback(() => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
 
-    return request.get(`/comments?pageId=${encodeURI(pageId)}`).then(response => {
+    return instance.get(`/comments?pageId=${encodeURI(pageId)}`).then(response => {
       dispatch({ type: 'GET_COMMENTS', payload: response.data });
     });
-  }, [request]);
+  }, [instance]);
 
   const replay = useCallback((comment?: IComment) => {
     dispatch({ type: 'REPLY_COMMENT', payload: comment });
   }, []);
+
+  useEffect(() => {
+    console.log('token ', token);
+    if (token) {
+      getComments();
+    }
+  }, [getComments, token]);
 
   return (
     <CommentsStateContext.Provider value={state}>
