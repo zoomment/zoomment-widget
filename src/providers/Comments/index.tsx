@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback, useEffect } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import { useRequest } from 'providers/Requests';
 
 export type IComment = {
@@ -111,7 +111,7 @@ type Props = {
 };
 
 export default function CommentsProvider(props: Props) {
-  const { instance, token } = useRequest();
+  const { instance } = useRequest();
 
   const [state, dispatch] = useReducer(reducer, {
     ...initialState
@@ -149,13 +149,6 @@ export default function CommentsProvider(props: Props) {
   const replay = useCallback((comment?: IComment) => {
     dispatch({ type: 'REPLY_COMMENT', payload: comment });
   }, []);
-
-  useEffect(() => {
-    console.log('token ', token);
-    if (token) {
-      getComments();
-    }
-  }, [getComments, token]);
 
   return (
     <CommentsStateContext.Provider value={state}>
