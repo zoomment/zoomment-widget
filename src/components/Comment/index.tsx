@@ -18,24 +18,25 @@ import {
   Content
 } from './style';
 
-export default function Comment({
-  comment,
-  children
-}: {
+type Props = {
   comment: IComment;
   children?: ReactNode;
-}) {
+  gravatar?: string | null;
+};
+
+export default function Comment({ comment, children, gravatar }: Props) {
   const actions = useCommentsDispatch();
   const state = useCommentsState();
   const { t } = useTranslation();
 
   const author = comment.author || comment.owner?.name;
-  const gravatar = comment.gravatar || comment.owner?.gravatar;
+  const gravatarHash = comment.gravatar || comment.owner?.gravatar;
+  const gravatarPlaceholder = gravatar || 'monsterid';
 
   return (
     <Item>
       <Avatar
-        src={`https://www.gravatar.com/avatar/${gravatar}?d=monsterid`} /*TODO: make this configurable, I like robohash also wavatar */
+        src={`https://www.gravatar.com/avatar/${gravatarHash}?d=${gravatarPlaceholder}`}
       />
       <Content>
         <Header>

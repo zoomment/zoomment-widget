@@ -19,6 +19,7 @@ if (commentsElement) {
   const theme = commentsElement.getAttribute('data-theme');
   const language = commentsElement.getAttribute('data-language');
   const emotions = parseEmotions(commentsElement.getAttribute('data-emotions'));
+  const gravatar = commentsElement.getAttribute('data-gravatar');
 
   ReactDOM.render(
     <ThemeProvider theme={theme}>
@@ -31,7 +32,7 @@ if (commentsElement) {
           )}
           <CommentsProvider>
             <Editor />
-            <Comments />
+            <Comments gravatar={gravatar} />
           </CommentsProvider>
           <Footer />
         </RequestProvider>

@@ -105,6 +105,5 @@ export const HeaderActions = styled.div`
 `;
 
 export const Content = styled.div`
-  overflow: hidden;
   width: 100%;
 `;

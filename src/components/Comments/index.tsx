@@ -6,7 +6,11 @@ import Comment from '../Comment';
 
 import { List, Title, Container, NoResult, Nested } from './style';
 
-export default function Comments() {
+type Props = {
+  gravatar?: string | null;
+};
+
+export default function Comments(props: Props) {
   const state = useCommentsState();
   const actions = useCommentsDispatch();
   const { t } = useTranslation();
@@ -31,11 +35,11 @@ export default function Comments() {
       </Title>
       <List>
         {state.comments.map(comment => (
-          <Comment key={comment._id} comment={comment}>
+          <Comment key={comment._id} comment={comment} gravatar={props.gravatar}>
             {comment?.replies?.length > 0 && (
               <Nested>
                 {comment.replies.map(reply => (
-                  <Comment key={reply._id} comment={reply} />
+                  <Comment key={reply._id} comment={reply} gravatar={props.gravatar} />
                 ))}
               </Nested>
             )}

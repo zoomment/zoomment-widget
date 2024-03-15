@@ -34,4 +34,15 @@ export const NoResult = styled.div`
 
 export const Nested = styled.div`
   margin-top: 12px;
+  position: relative;
+  // &:after {
+  //   content: '';
+  //   display: block;
+  //   position absolute;
+  //   top: 0;
+  //   left: -25px;
+  //   width: 1px;
+  //   height: 80%;
+  //   background-color: ${props => props.theme.borderColor};
+  // }
 `;
