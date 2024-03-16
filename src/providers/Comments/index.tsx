@@ -131,8 +131,10 @@ export default function CommentsProvider(props: Props) {
 
   const removeComment = useCallback(
     (data: Partial<IComment>) => {
+      const queryParam = data.secret ? `?secret=${data.secret}` : ``;
+
       return instance
-        .delete(`/comments/${data._id}?secret=${data.secret}`)
+        .delete(`/comments/${data._id}${queryParam}`)
         .then(() => dispatch({ type: 'REMOVE_COMMENT', payload: data }));
     },
     [instance]
