@@ -6,7 +6,7 @@
     "@ant-design/icons": "^5.3.1",
     "@parcel/config-default": "^2.12.0",
     "@parcel/transformer-typescript-tsc": "^2.12.0",
-    "axios": "^1.6.0",
+    "axios": "^1.7.4",
     "clientjs": "^0.2.1",
     "dayjs": "^1.11.9",
     "i18next": "^19.8.3",
