@@ -34,11 +34,12 @@ export default function RequestProvider(props: Props) {
   useEffect(() => {
     if (token) {
       setCookie('zoommentToken', token, {
-        days: 600
-        // path: '/',
-        // domain: `.zoomment.com`,
-        // SameSite: 'None',
-        // Secure: true
+        days: 600,
+        path: '/',
+        domain: `.zoomment.com`,
+        SameSite: 'None',
+        Secure: true,
+        partitioned: true
       });
     }
   }, [token]);
