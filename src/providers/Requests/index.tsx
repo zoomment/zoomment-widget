@@ -36,9 +36,6 @@ export default function RequestProvider(props: Props) {
       Cookies.set('zoommentToken', token, {
         expires: 600,
         path: '/',
-        domain: `.zoomment.com`,
-        sameSite: 'None',
-        secure: true,
         partitioned: true
       });
     }

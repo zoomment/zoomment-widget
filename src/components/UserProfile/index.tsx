@@ -11,9 +11,6 @@ function UserProfile() {
   const onLogout = useCallback(() => {
     Cookies.remove('zoommentToken', {
       path: '/',
-      domain: `.zoomment.com`,
-      sameSite: 'None',
-      secure: true,
       partitioned: true
     });
 
