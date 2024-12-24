@@ -10,11 +10,11 @@ function UserProfile() {
 
   const onLogout = useCallback(() => {
     setCookie('zoommentToken', '', {
-      days: -1,
-      path: '/',
-      domain: `.zoomment.com`,
-      SameSite: 'None',
-      Secure: true
+      days: -1
+      // path: '/',
+      // domain: `.zoomment.com`,
+      // SameSite: 'None',
+      // Secure: true
     });
 
     const url = new URL(window.location.href);
