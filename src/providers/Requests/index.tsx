@@ -34,7 +34,7 @@ export default function RequestProvider(props: Props) {
   useEffect(() => {
     if (token) {
       Cookies.set('zoommentToken', token, {
-        days: 600,
+        expires: 600,
         path: '/',
         domain: `.zoomment.com`,
         sameSite: 'None',

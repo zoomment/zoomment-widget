@@ -9,8 +9,7 @@ function UserProfile() {
   const payload = jwtDecode(token);
 
   const onLogout = useCallback(() => {
-    Cookies.set('zoommentToken', '', {
-      days: -1,
+    Cookies.remove('zoommentToken', {
       path: '/',
       domain: `.zoomment.com`,
       sameSite: 'None',
