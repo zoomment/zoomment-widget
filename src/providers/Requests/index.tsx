@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { ClientJS } from 'clientjs';
-import { setCookie } from 'react-use-cookie';
+import Cookies from 'js-cookie';
 import { ErrorMessage, Close } from '../Comments/style';
 import { getToken } from 'utils/getToken';
 import { FadeIn } from './style';
@@ -33,12 +33,12 @@ export default function RequestProvider(props: Props) {
 
   useEffect(() => {
     if (token) {
-      setCookie('zoommentToken', token, {
+      Cookies.set('zoommentToken', token, {
         days: 600,
         path: '/',
         domain: `.zoomment.com`,
-        SameSite: 'None',
-        Secure: true,
+        sameSite: 'None',
+        secure: true,
         partitioned: true
       });
     }

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { setCookie } from 'react-use-cookie';
+import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { Profile, Logout } from './style';
 import { getToken } from 'utils/getToken';
@@ -9,12 +9,12 @@ function UserProfile() {
   const payload = jwtDecode(token);
 
   const onLogout = useCallback(() => {
-    setCookie('zoommentToken', '', {
+    Cookies.set('zoommentToken', '', {
       days: -1,
       path: '/',
       domain: `.zoomment.com`,
-      SameSite: 'None',
-      Secure: true,
+      sameSite: 'None',
+      secure: true,
       partitioned: true
     });
 
