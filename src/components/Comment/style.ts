@@ -56,6 +56,7 @@ export const Body = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
+  word-wrap: anywhere;
   letter-spacing: 0.3px;
   white-space: break-spaces;
   color: ${props => props.theme.textColor};

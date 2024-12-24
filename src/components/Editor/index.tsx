@@ -2,7 +2,9 @@ import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import lscache from 'lscache';
 import { useCommentsDispatch, IComment } from 'providers/Comments';
 import { Container, Textarea, Button, Footer, Input, Form } from './style';
+import UserProfile from 'components/UserProfile';
 import { useTranslation } from 'react-i18next';
+import { getToken } from 'utils/getToken';
 
 type Props = {
   replyTo?: IComment;
@@ -13,6 +15,7 @@ export default function Editor(props: Props) {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState(lscache.get('name') || '');
   const [email, setEmail] = useState(lscache.get('email') || '');
+  const token = getToken();
 
   const form: React.RefObject<HTMLFormElement> = useRef(null);
   const submit: React.RefObject<HTMLButtonElement> = useRef(null);
@@ -75,28 +78,35 @@ export default function Editor(props: Props) {
           required
         />
         <Footer>
-          <Input
-            onChange={e => {
-              setName(e.target.value);
-              lscache.set('name', e.target.value);
-            }}
-            placeholder={t('USERNAME')}
-            disabled={loading}
-            value={name}
-            type="text"
-            required
-          />
-          <Input
-            onChange={e => {
-              setEmail(e.target.value);
-              lscache.set('email', e.target.value);
-            }}
-            placeholder={t('EMAIL')}
-            disabled={loading}
-            value={email}
-            type="email"
-            required
-          />
+          {token ? (
+            <UserProfile />
+          ) : (
+            <>
+              <Input
+                onChange={e => {
+                  setName(e.target.value);
+                  lscache.set('name', e.target.value);
+                }}
+                placeholder={t('USERNAME')}
+                disabled={loading}
+                value={name}
+                type="text"
+                required
+              />
+              <Input
+                onChange={e => {
+                  setEmail(e.target.value);
+                  lscache.set('email', e.target.value);
+                }}
+                placeholder={t('EMAIL')}
+                disabled={loading}
+                value={email}
+                type="email"
+                required
+              />
+            </>
+          )}
+
           <Button ref={submit} type="submit" disabled={loading}>
             {t('POST')}
           </Button>

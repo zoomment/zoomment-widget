@@ -1,13 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { ClientJS } from 'clientjs';
-import { getCookie, setCookie } from 'react-use-cookie';
+import { setCookie } from 'react-use-cookie';
 import { ErrorMessage, Close } from '../Comments/style';
+import { getToken } from 'utils/getToken';
 import { FadeIn } from './style';
 
 const RequestContext = React.createContext<
   | {
       instance: AxiosInstance;
+      token: string;
     }
   | undefined
 >(undefined);
@@ -27,15 +29,13 @@ type Props = {
 export default function RequestProvider(props: Props) {
   const [error, setError] = useState('');
 
-  const searchParams = new URL(window.location.href).searchParams;
-  const zoommentToken = searchParams.get('zoommentToken');
-  const token = zoommentToken || getCookie('zoommentToken');
+  const token = getToken();
 
   useEffect(() => {
-    if (zoommentToken) {
-      setCookie('zoommentToken', zoommentToken);
+    if (token) {
+      setCookie('zoommentToken', token);
     }
-  }, [zoommentToken]);
+  }, [token]);
 
   const instance = useMemo(() => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
@@ -70,7 +70,7 @@ export default function RequestProvider(props: Props) {
   }, [axios]);
 
   return (
-    <RequestContext.Provider value={{ instance }}>
+    <RequestContext.Provider value={{ instance, token }}>
       {error && (
         <ErrorMessage>
           {error} <Close onClick={() => setError('')} />
