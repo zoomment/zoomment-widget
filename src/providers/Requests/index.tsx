@@ -33,7 +33,14 @@ export default function RequestProvider(props: Props) {
 
   useEffect(() => {
     if (token) {
-      setCookie('zoommentToken', token);
+      const hostname = window.location.hostname;
+      setCookie('zoommentToken', token, {
+        days: 600,
+        path: '/',
+        domain: `.${hostname}`,
+        SameSite: 'None',
+        Secure: true
+      });
     }
   }, [token]);
 

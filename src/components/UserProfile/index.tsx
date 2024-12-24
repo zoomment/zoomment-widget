@@ -9,7 +9,7 @@ function UserProfile() {
   const payload = jwtDecode(token);
 
   const onLogout = useCallback(() => {
-    setCookie('zoommentToken', '', { days: -1 });
+    setCookie('zoommentToken', '', { days: -1, path: '/' });
 
     const url = new URL(window.location.href);
 
