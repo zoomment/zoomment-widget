@@ -9,9 +9,12 @@ function UserProfile() {
   const payload = jwtDecode(token);
 
   const onLogout = useCallback(() => {
+    const hostname = window.location.hostname;
     Cookies.remove('zoommentToken', {
       path: '/',
-      partitioned: true
+      secure: true,
+      sameSite: 'lax',
+      domain: `.${hostname}`
     });
 
     const url = new URL(window.location.href);
