@@ -6,13 +6,15 @@ import hy from 'locales/hy.json';
 import hyw from 'locales/hyw.json';
 import ru from 'locales/ru.json';
 import zh from 'locales/zh.json';
+import es from 'locales/es.json';
 
 const resources = {
   en: { translation: en },
   hy: { translation: hy },
   hyw: { translation: hyw },
   ru: { translation: ru },
-  zh: { translation: zh }
+  zh: { translation: zh },
+  es: { translation: es }
 };
 
 i18n.use(initReactI18next).init({
