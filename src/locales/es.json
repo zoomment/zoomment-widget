@@ -1,0 +1,13 @@
+{
+	"COMMENTS" : "Comentarios",
+	"COMMENT" : "Comentario",
+	"NO_COMMENTS" : "Sé el primero en comentar.",
+	"COMMENT_PLACEHOLDER": "¿Qué opinas?",
+	"USERNAME": "Nombre*",
+	"EMAIL": "Email*",
+	"POST": "Publicación",
+	"POWERED_BY": "Desarrollado por",
+	"LOADING": "Cargando...",
+	"REPLY": "Responder",
+	"DELETE": "Eliminar"
+}

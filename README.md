@@ -28,7 +28,7 @@ Options can be passed via data attributes for comment section.
 | Attribute Name | Possible values                                        |
 | -------------- | ------------------------------------------------------ |
 | data-theme     | light, dark, black                                     |
-| data-language  | en, hy, hyw, ru, zh                                    |
+| data-language  | en, hy, hyw, ru, zh, es                                |
 | data-emotions  | list comma separated emojis, leave empty if not needed |
 
 ## Development
