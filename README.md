@@ -28,17 +28,18 @@ Options can be passed via data attributes for comment section.
 | Attribute Name | Possible values                                        |
 | -------------- | ------------------------------------------------------ |
 | data-theme     | light, dark, black                                     |
-| data-language  | en, hy, hyw, ru, zh                                    |
+| data-language  | en, hy, hyw, ru, zh, es                                |
 | data-emotions  | list comma separated emojis, leave empty if not needed |
 
 ## Development
 
 1. Make sure you have node.js installed.
-2. Clone the repository and install dependencies:
+2. Clone the repository, install dependencies and configure your .env file:
 
 ```
 $ git clone https://github.com/zoomment/zoomment-widget.git
 $ cd zoomment-widget
+$ cp .env.example .env
 $ npm install
 ```
 
