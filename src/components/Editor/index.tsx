@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useEffect, useRef, useCallback } from 'react';
 import lscache from 'lscache';
 import { useCommentsDispatch, IComment } from 'providers/Comments';
 import { Container, Textarea, Button, Footer, Input, Form } from './style';
@@ -17,8 +17,8 @@ export default function Editor(props: Props) {
   const [email, setEmail] = useState(lscache.get('email') || '');
   const token = getToken();
 
-  const form: React.RefObject<HTMLFormElement> = useRef(null);
-  const submit: React.RefObject<HTMLButtonElement> = useRef(null);
+  const form = useRef<HTMLFormElement>(null);
+  const submit = useRef<HTMLButtonElement>(null);
   const { t } = useTranslation();
   const actions = useCommentsDispatch();
 
@@ -54,18 +54,21 @@ export default function Editor(props: Props) {
       });
   };
 
-  const onEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
-    if (e.keyCode == 13 && (e.metaKey || e.ctrlKey)) {
+  const onEnter = useCallback((e: KeyboardEvent) => {
+    if (e.keyCode === 13 && (e.metaKey || e.ctrlKey)) {
       submit.current?.click();
     }
-  };
+  }, []);
 
   useLayoutEffect(() => {
-    form.current?.addEventListener('keydown', onEnter as any);
+    const formElement = form.current;
+    if (!formElement) return;
+
+    formElement.addEventListener('keydown', onEnter);
     return () => {
-      form.current?.removeEventListener('keydown', onEnter as any);
+      formElement.removeEventListener('keydown', onEnter);
     };
-  }, [form.current]);
+  }, [onEnter]);
 
   return (
     <Container>

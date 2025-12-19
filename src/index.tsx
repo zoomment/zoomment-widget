@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './App';
 
 const commentsElement = document.getElementById('zoomment');
 
 if (commentsElement) {
-  ReactDOM.render(<App commentsElement={commentsElement} />, commentsElement);
+  const root = createRoot(commentsElement);
+  root.render(<App commentsElement={commentsElement} />);
 }
 
 if (!commentsElement) {

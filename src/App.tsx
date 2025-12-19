@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import CommentsProvider from 'providers/Comments';
 import ReactionsProvider from 'providers/Reactions';
 import VisitorsProvider from 'providers/Visitors';
