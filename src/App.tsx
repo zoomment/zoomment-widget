@@ -1,10 +1,8 @@
 import React from 'react';
-import CommentsProvider from 'providers/Comments';
-import ReactionsProvider from 'providers/Reactions';
-import VisitorsProvider from 'providers/Visitors';
 import LanguageProvider from 'providers/Language';
 import ThemeProvider from 'providers/Theme';
-import RequestProvider from 'providers/Requests';
+import ErrorDisplay from 'components/ErrorDisplay';
+import { FadeIn } from 'components/FadeIn/style';
 
 import Editor from 'components/Editor';
 import Comments from 'components/Comments';
@@ -14,10 +12,12 @@ import Visitors from './components/Visitors';
 
 import { parseEmotions } from './utils/emotions';
 import { useMutableAttribute } from './hooks/useMutableAttribute';
+import { useTokenSync } from './hooks/useTokenSync';
 
 const App = ({ commentsElement }: { commentsElement: HTMLElement }) => {
   const theme = useMutableAttribute(commentsElement, 'data-theme');
   const language = useMutableAttribute(commentsElement, 'data-language');
+  useTokenSync(); // Sync token to cookie when it changes
 
   const emotions = parseEmotions(commentsElement.getAttribute('data-emotions'));
   const gravatar = commentsElement.getAttribute('data-gravatar');
@@ -26,23 +26,14 @@ const App = ({ commentsElement }: { commentsElement: HTMLElement }) => {
   return (
     <ThemeProvider theme={theme}>
       <LanguageProvider language={language}>
-        <RequestProvider>
-          {emotions.length > 0 && (
-            <ReactionsProvider>
-              <ReactionsComponent emotions={emotions} />
-            </ReactionsProvider>
-          )}
-          {visitors === 'true' && (
-          <VisitorsProvider>
-              <Visitors />
-            </VisitorsProvider>
-          )}
-          <CommentsProvider>
-            <Editor />
-            <Comments gravatar={gravatar} />
-          </CommentsProvider>
+        <FadeIn>
+          <ErrorDisplay />
+          {emotions.length > 0 && <ReactionsComponent emotions={emotions} />}
+          {visitors === 'true' && <Visitors />}
+          <Editor />
+          <Comments gravatar={gravatar} />
           <Footer />
-        </RequestProvider>
+        </FadeIn>
       </LanguageProvider>
     </ThemeProvider>
   );

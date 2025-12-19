@@ -6,7 +6,7 @@ import { getToken } from 'utils/getToken';
 
 function UserProfile() {
   const token = getToken();
-  const payload = jwtDecode(token);
+  const payload = jwtDecode(token) as { email?: string; [key: string]: any };
 
   const onLogout = useCallback(() => {
     const hostname = window.location.hostname;
@@ -27,7 +27,7 @@ function UserProfile() {
   }, []);
 
   return (
-    payload && (
+    payload && payload.email && (
       <Profile>
         {payload.email} (<Logout onClick={onLogout}>logout</Logout>)
       </Profile>

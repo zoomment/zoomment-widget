@@ -1,27 +1,26 @@
 import React, { useEffect } from 'react';
-import { useVisitorsState, useVisitorsDispatch } from 'providers/Visitors';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getVisitors } from '../../store/slices/visitorsSlice';
 import { useTranslation } from 'react-i18next';
 import { Container, Count, Label } from './style';
 
 export default function Visitors() {
-  const visitorsState = useVisitorsState();
-  const visitorsActions = useVisitorsDispatch();
+  const dispatch = useAppDispatch();
+  const { count, loading } = useAppSelector((state) => state.visitors);
   const { t } = useTranslation();
 
   useEffect(() => {
-    visitorsActions.getVisitors();
-  }, []);
+    dispatch(getVisitors());
+  }, [dispatch]);
 
-  if (visitorsState.count === 0) {
+  if (loading || count === 0) {
     return null;
   }
 
   return (
     <Container>
-      <Count>{visitorsState.count}</Count>
-      <Label>
-        {visitorsState.count > 1 ? t('VISITORS') : t('VISITOR')}
-      </Label>
+      <Count>{count}</Count>
+      <Label>{count > 1 ? t('VISITORS') : t('VISITOR')}</Label>
     </Container>
   );
 }

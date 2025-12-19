@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
-import { useCommentsState, useCommentsDispatch, IComment } from 'providers/Comments';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { removeComment, replay } from '../../store/slices/commentsSlice';
+import { IComment } from '../../store/slices/commentsSlice';
 import { useTranslation } from 'react-i18next';
 import { CheckCircleFilled, DeleteOutlined, CommentOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
@@ -25,8 +27,8 @@ type Props = {
 };
 
 export default function Comment({ comment, children, gravatar }: Props) {
-  const actions = useCommentsDispatch();
-  const state = useCommentsState();
+  const dispatch = useAppDispatch();
+  const replayTo = useAppSelector((state) => state.comments.replayTo);
   const { t } = useTranslation();
 
   const author = comment.author || comment.owner?.name;
@@ -46,7 +48,7 @@ export default function Comment({ comment, children, gravatar }: Props) {
           </Username>
           <HeaderActions>
             {comment.isOwn && (
-              <Delete onClick={() => actions.removeComment(comment)}>
+              <Delete onClick={() => dispatch(removeComment(comment))}>
                 <DeleteOutlined /> Delete
               </Delete>
             )}
@@ -56,10 +58,10 @@ export default function Comment({ comment, children, gravatar }: Props) {
         <Actions>
           <Reply
             onClick={() => {
-              if (state.replayTo?._id === comment._id) {
-                actions.replay(undefined);
+              if (replayTo?._id === comment._id) {
+                dispatch(replay(undefined));
               } else {
-                actions.replay(comment);
+                dispatch(replay(comment));
               }
             }}
           >

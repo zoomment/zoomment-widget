@@ -37,6 +37,7 @@ type Props = {
 };
 
 export default function Theme(props: Props) {
-  const theme = themes[props.theme || 'light'];
+  const themeKey = (props.theme || 'light') as keyof typeof themes;
+  const theme = themes[themeKey] || themes.light;
   return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
 }

@@ -1,6 +1,8 @@
-import React, { useState, useLayoutEffect, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useLayoutEffect, useEffect, useRef, useCallback, useMemo } from 'react';
 import lscache from 'lscache';
-import { useCommentsDispatch, IComment } from 'providers/Comments';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { addComment } from '../../store/slices/commentsSlice';
+import { IComment } from '../../store/slices/commentsSlice';
 import { Container, Textarea, Button, Footer, Input, Form } from './style';
 import UserProfile from 'components/UserProfile';
 import { useTranslation } from 'react-i18next';
@@ -10,71 +12,116 @@ type Props = {
   replyTo?: IComment;
 };
 
-export default function Editor(props: Props) {
+const CACHE_KEYS = {
+  NAME: 'name',
+  EMAIL: 'email',
+} as const;
+
+export default function Editor({ replyTo }: Props) {
   const [body, setBody] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [name, setName] = useState(lscache.get('name') || '');
-  const [email, setEmail] = useState(lscache.get('email') || '');
+  const [name, setName] = useState(() => lscache.get(CACHE_KEYS.NAME) || '');
+  const [email, setEmail] = useState(() => lscache.get(CACHE_KEYS.EMAIL) || '');
+  
+  const formRef = useRef<HTMLFormElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
+  
+  const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const loading = useAppSelector((state) => state.comments.addingComment);
+  const error = useAppSelector((state) => state.requests.error);
+  const prevLoadingRef = useRef(loading);
+  
+  // Get token - could change if user logs in/out, but typically stable during session
   const token = getToken();
 
-  const form = useRef<HTMLFormElement>(null);
-  const submit = useRef<HTMLButtonElement>(null);
-  const { t } = useTranslation();
-  const actions = useCommentsDispatch();
-
+  // Update body when replyTo changes
   useEffect(() => {
-    if (props.replyTo) {
-      setBody(`@${props.replyTo.author} `);
+    if (replyTo?.author) {
+      setBody(`@${replyTo.author} `);
+    } else {
+      setBody('');
     }
-  }, [props.replyTo]);
+  }, [replyTo]);
 
-  const onValidSubmit: React.FormEventHandler<HTMLFormElement> = e => {
+  // Clear body when comment is successfully added
+  useEffect(() => {
+    // If loading changed from true to false and no error, comment was added successfully
+    if (prevLoadingRef.current && !loading && !error) {
+      setBody('');
+    }
+    prevLoadingRef.current = loading;
+  }, [loading, error]);
+
+  // Calculate parentId once
+  const parentId = useMemo(() => {
+    return replyTo?.parentId || replyTo?._id;
+  }, [replyTo]);
+
+  // Handle name change and cache it
+  const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setName(value);
+    lscache.set(CACHE_KEYS.NAME, value);
+  }, []);
+
+  // Handle email change and cache it
+  const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    lscache.set(CACHE_KEYS.EMAIL, value);
+  }, []);
+
+  // Handle form submission
+  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    
+    const trimmedBody = body.trim();
+    if (!trimmedBody) {
+      return;
+    }
 
-    const parentId = props.replyTo?.parentId || props.replyTo?._id;
-
-    actions
-      .addComment({
-        body,
+    // Dispatch the action - success/error handling is done via useEffect watching state
+    dispatch(
+      addComment({
+        body: trimmedBody,
         email,
         author: name,
         // owner field deprecated
         owner: { name, email },
         pageUrl: window.location.href,
-        parentId: parentId
+        parentId,
       })
-      .then(() => {
-        setBody('');
-        setLoading(false);
-      })
-      .catch(error => {
-        setLoading(false);
-        return Promise.reject(error);
-      });
-  };
+    );
+    // Error is handled globally by apiClient and displayed by ErrorDisplay component
+  }, [body, email, name, parentId, dispatch]);
 
-  const onEnter = useCallback((e: KeyboardEvent) => {
-    if (e.keyCode === 13 && (e.metaKey || e.ctrlKey)) {
-      submit.current?.click();
+  // Handle keyboard shortcut (Cmd/Ctrl + Enter)
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    const isEnter = e.key === 'Enter' || e.keyCode === 13;
+    const isModifier = e.metaKey || e.ctrlKey;
+    
+    if (isEnter && isModifier) {
+      e.preventDefault();
+      submitRef.current?.click();
     }
   }, []);
 
+  // Set up keyboard event listener
   useLayoutEffect(() => {
-    const formElement = form.current;
+    const formElement = formRef.current;
     if (!formElement) return;
 
-    formElement.addEventListener('keydown', onEnter);
+    formElement.addEventListener('keydown', handleKeyDown);
     return () => {
-      formElement.removeEventListener('keydown', onEnter);
+      formElement.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onEnter]);
+  }, [handleKeyDown]);
 
   return (
     <Container>
-      <Form ref={form} onSubmit={onValidSubmit}>
+      <Form ref={formRef} onSubmit={handleSubmit}>
         <Textarea
-          onChange={e => setBody(e.target.value)}
+          onChange={(e) => setBody(e.target.value)}
           placeholder={t('COMMENT_PLACEHOLDER')}
           disabled={loading}
           value={body}
@@ -86,10 +133,7 @@ export default function Editor(props: Props) {
           ) : (
             <>
               <Input
-                onChange={e => {
-                  setName(e.target.value);
-                  lscache.set('name', e.target.value);
-                }}
+                onChange={handleNameChange}
                 placeholder={t('USERNAME')}
                 disabled={loading}
                 value={name}
@@ -97,10 +141,7 @@ export default function Editor(props: Props) {
                 required
               />
               <Input
-                onChange={e => {
-                  setEmail(e.target.value);
-                  lscache.set('email', e.target.value);
-                }}
+                onChange={handleEmailChange}
                 placeholder={t('EMAIL')}
                 disabled={loading}
                 value={email}
@@ -110,7 +151,7 @@ export default function Editor(props: Props) {
             </>
           )}
 
-          <Button ref={submit} type="submit" disabled={loading}>
+          <Button ref={submitRef} type="submit" disabled={loading}>
             {t('POST')}
           </Button>
         </Footer>

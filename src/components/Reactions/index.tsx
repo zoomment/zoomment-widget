@@ -1,32 +1,38 @@
 import React, { useEffect, useCallback } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getReactions, react } from '../../store/slices/reactionsSlice';
 
 import { ContentBubbleContainer, ContentBubble, ContentBubbleCount } from './style';
-import { useReactionDispatch, useReactionState } from 'providers/Reactions';
 
 type Props = {
   emotions: string[];
 };
 
 function ReactionsComponent({ emotions }: Props) {
-  const reactionsState = useReactionState();
-  const actions = useReactionDispatch();
+  const dispatch = useAppDispatch();
+  const { reactions } = useAppSelector((state) => state.reactions);
 
-  const { aggregation, userReaction } = reactionsState?.reactions || {};
+  const { aggregation, userReaction } = reactions || {};
 
-  const onReact = useCallback((reaction: string) => actions.react(reaction), []);
+  const onReact = useCallback(
+    (reaction: string) => {
+      dispatch(react(reaction));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    actions.getReactions();
-  }, []);
+    dispatch(getReactions());
+  }, [dispatch]);
 
   return (
     <ContentBubbleContainer>
-      {emotions.map((emotion, index) => {
-        const count = aggregation?.find(data => data._id === emotion)?.count;
+      {emotions.map((emotion) => {
+        const count = aggregation?.find((data) => data._id === emotion)?.count;
 
         return (
           <ContentBubble
-            key={index}
+            key={emotion}
             $selected={userReaction?.reaction === emotion}
             onClick={() => onReact(emotion)}
           >
