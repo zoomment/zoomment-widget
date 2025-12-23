@@ -17,5 +17,6 @@
   "SHOW_REPLY": "Show 1 reply",
   "LOAD_MORE_REPLIES": "Load more replies",
   "UPVOTE": "Upvote",
-  "DOWNVOTE": "Downvote"
+  "DOWNVOTE": "Downvote",
+  "COMMENT_ADDED": "Comment added successfully!"
 }

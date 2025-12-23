@@ -1,7 +1,7 @@
 import React from 'react';
 import LanguageProvider from 'providers/Language';
 import ThemeProvider from 'providers/Theme';
-import ErrorDisplay from 'components/ErrorDisplay';
+import NotificationDisplay from './components/NotificationDisplay';
 import { FadeIn } from 'components/FadeIn/style';
 
 import Editor from 'components/Editor';
@@ -27,7 +27,7 @@ const App = ({ commentsElement }: { commentsElement: HTMLElement }) => {
     <ThemeProvider theme={theme}>
       <LanguageProvider language={language}>
         <FadeIn>
-          <ErrorDisplay />
+          <NotificationDisplay />
           {emotions.length > 0 && <ReactionsComponent emotions={emotions} />}
           {visitors === 'true' && <Visitors />}
           <Editor />

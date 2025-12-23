@@ -17,5 +17,6 @@
 	"SHOW_REPLY": "Mostrar 1 respuesta",
 	"LOAD_MORE_REPLIES": "Cargar más respuestas",
 	"UPVOTE": "Votar a favor",
-	"DOWNVOTE": "Votar en contra"
+	"DOWNVOTE": "Votar en contra",
+	"COMMENT_ADDED": "¡Comentario añadido correctamente!"
 }

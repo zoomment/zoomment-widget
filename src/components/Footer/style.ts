@@ -9,6 +9,7 @@ export const Container = styled.div`
   text-align: right;
   letter-spacing: 0.5px;
   box-sizing: border-box;
+  margin-top: 10px;
   color: ${props => props.theme.textMuted};
 `;
 

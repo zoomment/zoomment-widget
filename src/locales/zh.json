@@ -17,5 +17,6 @@
 	"SHOW_REPLY": "显示 1 条回复",
 	"LOAD_MORE_REPLIES": "加载更多回复",
 	"UPVOTE": "赞同",
-	"DOWNVOTE": "反对"
+	"DOWNVOTE": "反对",
+	"COMMENT_ADDED": "评论添加成功！"
 }

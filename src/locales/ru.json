@@ -17,5 +17,6 @@
 	"SHOW_REPLY": "Показать 1 ответ",
 	"LOAD_MORE_REPLIES": "Загрузить ещё ответы",
 	"UPVOTE": "За",
-	"DOWNVOTE": "Против"
+	"DOWNVOTE": "Против",
+	"COMMENT_ADDED": "Комментарий успешно добавлен!"
 }

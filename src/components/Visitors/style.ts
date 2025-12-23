@@ -10,7 +10,6 @@ export const Container = styled.div`
   background: ${props => props.theme.inputBackground};
   color: ${props => props.theme.textColor};
   font-size: 14px;
-  border: 1px solid ${props => props.theme.borderColor};
 `;
 
 export const Count = styled.span`
