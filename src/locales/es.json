@@ -1,7 +1,7 @@
 {
-	"COMMENTS" : "Comentarios",
-	"COMMENT" : "Comentario",
-	"NO_COMMENTS" : "Sé el primero en comentar.",
+	"COMMENTS": "Comentarios",
+	"COMMENT": "Comentario",
+	"NO_COMMENTS": "Sé el primero en comentar.",
 	"COMMENT_PLACEHOLDER": "¿Qué opinas?",
 	"USERNAME": "Nombre*",
 	"EMAIL": "Email*",
@@ -11,5 +11,11 @@
 	"REPLY": "Responder",
 	"DELETE": "Eliminar",
 	"VISITORS": "Visitantes",
-	"VISITOR": "Visitante"
+	"VISITOR": "Visitante",
+	"LOAD_MORE": "Cargar más",
+	"SHOW_REPLIES": "Mostrar {{count}} respuestas",
+	"SHOW_REPLY": "Mostrar 1 respuesta",
+	"LOAD_MORE_REPLIES": "Cargar más respuestas",
+	"UPVOTE": "Votar a favor",
+	"DOWNVOTE": "Votar en contra"
 }

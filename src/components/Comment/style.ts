@@ -24,7 +24,7 @@ export const Header = styled.div`
   margin-bottom: 4px;
   align-items: center;
   flex-direction: row;
-  color: ${props => props.theme.textColorSecondary};
+  color: ${props => props.theme.textMuted};
 `;
 
 export const User = styled.div`
@@ -37,9 +37,9 @@ export const Username = styled.div`
   font-weight: 700;
   margin-right: 5px;
   letter-spacing: 0.5px;
-  color: ${props => props.theme.textColorSecondary};
+  color: ${props => props.theme.textMuted};
   svg {
-    color: green;
+    color: ${props => props.theme.verifiedColor};
   }
 `;
 
@@ -49,7 +49,7 @@ export const Date = styled.span`
   margin-left: 5px;
   letter-spacing: 0px;
   text-decoration: none;
-  color: ${props => props.theme.textColorSecondary};
+  color: ${props => props.theme.textMuted};
 `;
 
 export const Body = styled.div`
@@ -74,22 +74,22 @@ export const Action = styled.button`
 `;
 
 export const Reply = styled(Action)`
-  color: ${props => props.theme.buttonBackground};
+  color: ${props => props.theme.textMuted};
   &:hover,
   &:visited,
   &:focus {
-    color: ${props => props.theme.buttonBackgroundHover};
+    color: ${props => props.theme.linkColorHover};
   }
 `;
 
 export const Delete = styled(Action)`
-  color: ${props => props.theme.textColorSecondary};
+  color: ${props => props.theme.textMuted};
   padding-top: 0;
   padding-bottom: 0;
   &:hover,
   &:visited,
   &:focus {
-    color: ${props => props.theme.textColor};
+    color: ${props => props.theme.errorColor};
   }
 `;
 
@@ -126,12 +126,12 @@ export const VoteButton = styled.button<{ $active?: boolean; $type: 'up' | 'down
   border-radius: 4px;
   transition: all 0.15s ease;
   color: ${props => props.$active
-    ? (props.$type === 'up' ? '#22c55e' : '#ef4444')
-    : props.theme.textColorSecondary};
+    ? (props.$type === 'up' ? props.theme.voteUpColor : props.theme.voteDownColor)
+    : props.theme.textMuted};
 
   &:hover {
     background: ${props => props.theme.borderColor};
-    color: ${props => props.$type === 'up' ? '#22c55e' : '#ef4444'};
+    color: ${props => props.$type === 'up' ? props.theme.voteUpColor : props.theme.voteDownColor};
   }
 
   &:disabled {
@@ -149,8 +149,8 @@ export const VoteScore = styled.span<{ $positive?: boolean; $negative?: boolean 
   font-weight: 600;
   min-width: 20px;
   text-align: center;
-  color: ${props => 
-    props.$positive ? '#22c55e' : 
-    props.$negative ? '#ef4444' : 
-    props.theme.textColorSecondary};
+  color: ${props =>
+    props.$positive ? props.theme.voteUpColor :
+      props.$negative ? props.theme.voteDownColor :
+        props.theme.textMuted};
 `;

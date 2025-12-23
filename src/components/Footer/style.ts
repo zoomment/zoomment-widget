@@ -9,16 +9,16 @@ export const Container = styled.div`
   text-align: right;
   letter-spacing: 0.5px;
   box-sizing: border-box;
-  color: ${props => props.theme.textColorSecondary};
+  color: ${props => props.theme.textMuted};
 `;
 
 export const Link = styled.a`
   padding: 0 5px;
-  color: #4c85f2;
+  color: ${props => props.theme.linkColor};
   font-weight: 500;
   text-decoration: underline;
 `;
 
 export const Heart = styled(HeartFilled)`
-  color: #f42d2d;
+  color: ${props => props.theme.errorColor};
 `;

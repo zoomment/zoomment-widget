@@ -1,7 +1,7 @@
 {
-	"COMMENTS" : "条评论",
-	"COMMENT" : "条评论",
-	"NO_COMMENTS" : "来做第一个留言的人吧！",
+	"COMMENTS": "条评论",
+	"COMMENT": "条评论",
+	"NO_COMMENTS": "来做第一个留言的人吧！",
 	"COMMENT_PLACEHOLDER": "你怎么看？",
 	"USERNAME": "名称*",
 	"EMAIL": "电子邮件*",
@@ -11,5 +11,11 @@
 	"REPLY": "回复",
 	"DELETE": "删除",
 	"VISITORS": "访客",
-	"VISITOR": "访客"
+	"VISITOR": "访客",
+	"LOAD_MORE": "加载更多",
+	"SHOW_REPLIES": "显示 {{count}} 条回复",
+	"SHOW_REPLY": "显示 1 条回复",
+	"LOAD_MORE_REPLIES": "加载更多回复",
+	"UPVOTE": "赞同",
+	"DOWNVOTE": "反对"
 }

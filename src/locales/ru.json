@@ -1,15 +1,21 @@
 {
-	"COMMENTS" : "Kомментарий",
-	"COMMENT" : "Kомментарий",
-	"NO_COMMENTS" : "Прокомментируйте первым.",
+	"COMMENTS": "Комментарии",
+	"COMMENT": "Комментарий",
+	"NO_COMMENTS": "Прокомментируйте первым.",
 	"COMMENT_PLACEHOLDER": "Что вы думаете?",
 	"USERNAME": "Имя*",
 	"EMAIL": "Почта*",
 	"POST": "Опубликовать",
 	"POWERED_BY": "Работает на",
 	"LOADING": "Загрузка...",
-	"REPLY": "Отвечать",
+	"REPLY": "Ответить",
 	"DELETE": "Удалить",
 	"VISITORS": "Посетителей",
-	"VISITOR": "Посетитель"
+	"VISITOR": "Посетитель",
+	"LOAD_MORE": "Загрузить ещё",
+	"SHOW_REPLIES": "Показать {{count}} ответов",
+	"SHOW_REPLY": "Показать 1 ответ",
+	"LOAD_MORE_REPLIES": "Загрузить ещё ответы",
+	"UPVOTE": "За",
+	"DOWNVOTE": "Против"
 }

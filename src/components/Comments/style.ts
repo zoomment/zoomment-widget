@@ -87,11 +87,11 @@ export const ShowReplies = styled.button`
   cursor: pointer;
   border: none;
   background: none;
-  color: ${props => props.theme.buttonBackground};
+  color: ${props => props.theme.linkColor};
   transition: color 0.2s ease;
 
   &:hover {
-    color: ${props => props.theme.buttonBackgroundHover};
+    color: ${props => props.theme.linkColorHover};
   }
 
   &:disabled {
