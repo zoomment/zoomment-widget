@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiGet } from '../../utils/apiClient';
+import { apiPost } from '../../utils/apiClient';
 
 interface VisitorsState {
   loading: boolean;
@@ -17,7 +17,7 @@ export const getVisitors = createAsyncThunk(
   'visitors/getVisitors',
   async () => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
-    const response = await apiGet<{ count?: number } | number>(`/visitors?pageId=${encodeURI(pageId)}`);
+    const response = await apiPost<{ count?: number } | number>(`/visitors?pageId=${encodeURI(pageId)}`);
     const count = typeof response === 'number' ? response : response?.count || 0;
     return count;
   }

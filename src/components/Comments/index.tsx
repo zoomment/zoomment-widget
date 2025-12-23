@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getComments } from '../../store/slices/commentsSlice';
+import {
+  getComments,
+  getMoreComments,
+  getReplies
+} from '../../store/slices/commentsSlice';
 import { useTranslation } from 'react-i18next';
 import Editor from '../Editor';
 import Comment from '../Comment';
 
-import { List, Title, Container, NoResult, Nested } from './style';
+import { List, Title, Container, NoResult, Nested, LoadMore, ShowReplies } from './style';
 
 type Props = {
   gravatar?: string | null;
@@ -13,13 +17,22 @@ type Props = {
 
 export default function Comments(props: Props) {
   const dispatch = useAppDispatch();
-  const { loading, comments, replayTo } = useAppSelector((state) => state.comments);
+  const { loading, loadingMore, comments, replayTo, hasMore, skip, total } =
+    useAppSelector(state => state.comments);
   const { t } = useTranslation();
   const parentId = replayTo?.parentId || replayTo?._id;
 
   useEffect(() => {
     dispatch(getComments());
   }, [dispatch]);
+
+  const handleLoadMore = () => {
+    dispatch(getMoreComments(skip));
+  };
+
+  const handleShowReplies = (commentId: string, repliesSkip: number = 0) => {
+    dispatch(getReplies({ commentId, skip: repliesSkip }));
+  };
 
   if (loading) {
     return <NoResult>{t('LOADING')}</NoResult>;
@@ -35,16 +48,43 @@ export default function Comments(props: Props) {
   return (
     <Container>
       <Title>
-        {commentsArray.length} {commentsArray.length > 1 ? t('COMMENTS') : t('COMMENT')}
+        {total} {total > 1 ? t('COMMENTS') : t('COMMENT')}
       </Title>
       <List>
         {commentsArray.map(comment => (
           <Comment key={comment._id} comment={comment} gravatar={props.gravatar}>
+            {/* Show replies button when replies exist but haven't been loaded */}
+            {!comment.repliesLoaded &&
+              !!comment.repliesCount &&
+              comment.repliesCount > 0 && (
+                <ShowReplies
+                  onClick={() => handleShowReplies(comment._id)}
+                  disabled={comment.loadingReplies}
+                >
+                  {comment.loadingReplies
+                    ? t('LOADING')
+                    : comment.repliesCount === 1
+                    ? t('SHOW_REPLY')
+                    : t('SHOW_REPLIES', { count: comment.repliesCount })}
+                </ShowReplies>
+              )}
+            {/* Display loaded replies */}
             {comment.replies && comment.replies.length > 0 && (
               <Nested>
                 {comment.replies.map(reply => (
                   <Comment key={reply._id} comment={reply} gravatar={props.gravatar} />
                 ))}
+                {/* Load more replies button */}
+                {comment.repliesHasMore && (
+                  <ShowReplies
+                    onClick={() =>
+                      handleShowReplies(comment._id, comment.repliesSkip || 0)
+                    }
+                    disabled={comment.loadingReplies}
+                  >
+                    {comment.loadingReplies ? t('LOADING') : t('LOAD_MORE_REPLIES')}
+                  </ShowReplies>
+                )}
               </Nested>
             )}
             {parentId === comment._id && (
@@ -55,6 +95,11 @@ export default function Comments(props: Props) {
           </Comment>
         ))}
       </List>
+      {hasMore && (
+        <LoadMore onClick={handleLoadMore} disabled={loadingMore}>
+          {loadingMore ? t('LOADING') : t('LOAD_MORE')}
+        </LoadMore>
+      )}
     </Container>
   );
 }

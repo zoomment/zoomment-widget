@@ -46,3 +46,56 @@ export const Nested = styled.div`
   //   background-color: ${props => props.theme.borderColor};
   // }
 `;
+
+export const LoadMore = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 16px;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid ${props => props.theme.borderColor};
+  border-radius: 6px;
+  background: transparent;
+  color: ${props => props.theme.textColor};
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: ${props => props.theme.borderColor};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
+export const ShowReplies = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: ${props => props.theme.buttonBackground};
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: ${props => props.theme.buttonBackgroundHover};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
