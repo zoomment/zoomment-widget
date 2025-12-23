@@ -1,8 +1,19 @@
 # Zoomment.com
 
-Comments and reactions for your website with less than 500kb.💬👁️😀
+Comments and reactions for your website with less than 500kb. 💬👁️😀
 
 <img width="688" alt="Screenshot 2024-03-13 at 19 26 33" src="https://github.com/zoomment/zoomment-widget/assets/25534427/923a6ece-1516-4157-8224-3f7873934925">
+
+## Features
+
+- 💬 **Comments** - Threaded comments with replies
+- 👍 **Voting** - Upvote and downvote comments
+- 😀 **Reactions** - Customizable emoji reactions
+- 👁️ **Page Views** - Track page view counts
+- 🎨 **Themes** - Light, dark, and black themes
+- 🌍 **i18n** - Multi-language support (EN, ES, RU, HY, HYW, ZH)
+- 📱 **Responsive** - Works on all devices
+- ⚡ **Lightweight** - Less than 500kb
 
 ## Usage
 
@@ -15,6 +26,7 @@ Place the following code where you'd like Zoomment to load:
   data-theme="light"
   data-language="en"
   data-emotions="❤️,😀,🪄,🥸,💡,🤔,💩,😢"
+  data-visitors="true"
 ></div>
 
 <!-- the working script -->
@@ -25,34 +37,48 @@ Place the following code where you'd like Zoomment to load:
 
 Options can be passed via data attributes for comment section.
 
-| Attribute Name | Possible values                                        |
-| -------------- | ------------------------------------------------------ |
-| data-theme     | light, dark, black                                     |
-| data-language  | en, hy, hyw, ru, zh, es                                |
-| data-emotions  | list comma separated emojis, leave empty if not needed |
+| Attribute Name | Possible values                                        | Default   |
+| -------------- | ------------------------------------------------------ | --------- |
+| data-theme     | light, dark, black                                     | light     |
+| data-language  | en, hy, hyw, ru, zh, es                                | en        |
+| data-emotions  | list comma separated emojis, leave empty if not needed | -         |
+| data-gravatar  | Gravatar placeholder style (monsterid, identicon, etc) | monsterid |
+| data-visitors  | true, false - show/hide page view counter              | false     |
 
 ## Development
 
-1. Make sure you have node.js installed.
+1. Make sure you have Node.js installed.
 2. Clone the repository, install dependencies and configure your .env file:
 
-```
-$ git clone https://github.com/zoomment/zoomment-widget.git
-$ cd zoomment-widget
-$ cp .env.example .env
-$ npm install
+```bash
+git clone https://github.com/zoomment/zoomment-widget.git
+cd zoomment-widget
+cp .env.example .env
+npm install
 ```
 
 3. Run it for development:
 
-```
-$ npm start
+```bash
+npm start
 ```
 
 Open http://localhost:1234 to view it in the browser.
 
 4. Build it for production:
 
+```bash
+npm run build
 ```
-$ npm run build
+
+## API
+
+The widget communicates with the Zoomment API. Set the `REACT_APP_API_URL` environment variable in your `.env` file:
+
 ```
+API_URL=https://api.zoomment.com
+```
+
+## License
+
+MIT
