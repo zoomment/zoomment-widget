@@ -15,5 +15,7 @@
   "LOAD_MORE": "Load more",
   "SHOW_REPLIES": "Show {{count}} replies",
   "SHOW_REPLY": "Show 1 reply",
-  "LOAD_MORE_REPLIES": "Load more replies"
+  "LOAD_MORE_REPLIES": "Load more replies",
+  "UPVOTE": "Upvote",
+  "DOWNVOTE": "Downvote"
 }

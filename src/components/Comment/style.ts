@@ -108,3 +108,49 @@ export const HeaderActions = styled.div`
 export const Content = styled.div`
   width: 100%;
 `;
+
+export const VoteContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const VoteButton = styled.button<{ $active?: boolean; $type: 'up' | 'down' }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  color: ${props => props.$active
+    ? (props.$type === 'up' ? '#22c55e' : '#ef4444')
+    : props.theme.textColorSecondary};
+
+  &:hover {
+    background: ${props => props.theme.borderColor};
+    color: ${props => props.$type === 'up' ? '#22c55e' : '#ef4444'};
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  svg {
+    font-size: 14px;
+  }
+`;
+
+export const VoteScore = styled.span<{ $positive?: boolean; $negative?: boolean }>`
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  color: ${props => 
+    props.$positive ? '#22c55e' : 
+    props.$negative ? '#ef4444' : 
+    props.theme.textColorSecondary};
+`;

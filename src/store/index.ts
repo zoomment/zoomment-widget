@@ -3,6 +3,7 @@ import commentsReducer from './slices/commentsSlice';
 import reactionsReducer from './slices/reactionsSlice';
 import visitorsReducer from './slices/visitorsSlice';
 import requestsReducer from './slices/requestsSlice';
+import votesReducer from './slices/votesSlice';
 import { syncTokenToCookie } from '../utils/tokenManager';
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
     comments: commentsReducer,
     reactions: reactionsReducer,
     visitors: visitorsReducer,
-    requests: requestsReducer
+    requests: requestsReducer,
+    votes: votesReducer
   }
 });
 

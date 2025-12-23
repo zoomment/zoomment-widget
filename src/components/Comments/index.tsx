@@ -5,6 +5,7 @@ import {
   getMoreComments,
   getReplies
 } from '../../store/slices/commentsSlice';
+import { getVotes } from '../../store/slices/votesSlice';
 import { useTranslation } from 'react-i18next';
 import Editor from '../Editor';
 import Comment from '../Comment';
@@ -25,6 +26,20 @@ export default function Comments(props: Props) {
   useEffect(() => {
     dispatch(getComments());
   }, [dispatch]);
+
+  // Fetch votes when comments are loaded
+  useEffect(() => {
+    if (comments.length > 0) {
+      const commentIds = comments.map(c => c._id);
+      // Also include reply IDs if they exist
+      comments.forEach(c => {
+        if (c.replies && c.replies.length > 0) {
+          commentIds.push(...c.replies.map(r => r._id));
+        }
+      });
+      dispatch(getVotes(commentIds));
+    }
+  }, [comments, dispatch]);
 
   const handleLoadMore = () => {
     dispatch(getMoreComments(skip));
