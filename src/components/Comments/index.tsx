@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   getComments,
@@ -22,6 +22,9 @@ export default function Comments(props: Props) {
     useAppSelector(state => state.comments);
   const { t } = useTranslation();
   const parentId = replayTo?.parentId || replayTo?._id;
+  
+  // Track which comment IDs we've already fetched votes for
+  const fetchedVoteIds = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     dispatch(getComments());
@@ -30,14 +33,24 @@ export default function Comments(props: Props) {
   // Fetch votes when comments are loaded
   useEffect(() => {
     if (comments.length > 0) {
-      const commentIds = comments.map(c => c._id);
-      // Also include reply IDs if they exist
+      const allIds: string[] = [];
+      
+      // Collect all comment and reply IDs
       comments.forEach(c => {
+        allIds.push(c._id);
         if (c.replies && c.replies.length > 0) {
-          commentIds.push(...c.replies.map(r => r._id));
+          allIds.push(...c.replies.map(r => r._id));
         }
       });
-      dispatch(getVotes(commentIds));
+      
+      // Filter out IDs we've already fetched votes for
+      const newIds = allIds.filter(id => !fetchedVoteIds.current.has(id));
+      
+      if (newIds.length > 0) {
+        // Mark these IDs as fetched
+        newIds.forEach(id => fetchedVoteIds.current.add(id));
+        dispatch(getVotes(newIds));
+      }
     }
   }, [comments, dispatch]);
 
