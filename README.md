@@ -2,7 +2,7 @@
 
 Comments and reactions for your website with less than 500kb. 💬👁️😀
 
-<img width="688" alt="Screenshot 2024-03-13 at 19 26 33" src="https://github.com/zoomment/zoomment-widget/assets/25534427/923a6ece-1516-4157-8224-3f7873934925">
+<img width="688" alt="Screenshot 2024-03-13 at 19 26 33" src="/images/light.png">
 
 ## Features
 
