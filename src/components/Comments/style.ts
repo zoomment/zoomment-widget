@@ -33,6 +33,12 @@ export const SortButton = styled.button<{ $active?: boolean }>`
   background: transparent;
   color: ${props => props.theme.textColor};
   transition: color 0.2s ease;
+  outline: none;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 
   ${props => props.$active && `
     color: ${props.theme.linkColor};
