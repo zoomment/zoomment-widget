@@ -18,5 +18,7 @@
   "LOAD_MORE_REPLIES": "Load more replies",
   "UPVOTE": "Upvote",
   "DOWNVOTE": "Downvote",
-  "COMMENT_ADDED": "Comment added successfully!"
+  "COMMENT_ADDED": "Comment added successfully!",
+  "NEWEST": "Newest",
+  "OLDEST": "Oldest"
 }

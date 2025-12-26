@@ -18,5 +18,7 @@
 	"LOAD_MORE_REPLIES": "Cargar más respuestas",
 	"UPVOTE": "Votar a favor",
 	"DOWNVOTE": "Votar en contra",
-	"COMMENT_ADDED": "¡Comentario añadido correctamente!"
+	"COMMENT_ADDED": "¡Comentario añadido correctamente!",
+	"NEWEST": "Más recientes",
+	"OLDEST": "Más antiguos"
 }

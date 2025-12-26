@@ -1,14 +1,43 @@
 import styled from 'styled-components';
 
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid ${props => props.theme.borderColor};
+`;
+
 export const Title = styled.div`
-  width: 100%;
   line-height: 1;
   font-size: 15px;
-  padding: 12px 0;
   font-weight: 700;
   letter-spacing: 0px;
   color: ${props => props.theme.textColor};
-  border-bottom: 1px solid ${props => props.theme.borderColor};
+`;
+
+export const SortContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const SortButton = styled.button<{ $active?: boolean }>`
+  padding: 2px 0;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: ${props => props.theme.textColor};
+  transition: color 0.2s ease;
+
+  ${props => props.$active && `
+    color: ${props.theme.linkColor};
+    border-bottom: 2px solid ${props.theme.linkColor};
+  `}
 `;
 
 export const Container = styled.div`

@@ -18,5 +18,7 @@
 	"LOAD_MORE_REPLIES": "加载更多回复",
 	"UPVOTE": "赞同",
 	"DOWNVOTE": "反对",
-	"COMMENT_ADDED": "评论添加成功！"
+	"COMMENT_ADDED": "评论添加成功！",
+	"NEWEST": "最新",
+	"OLDEST": "最旧"
 }

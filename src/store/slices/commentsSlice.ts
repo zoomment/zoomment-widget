@@ -46,6 +46,8 @@ interface RepliesResponse {
   hasMore: boolean;
 }
 
+export type SortOrder = 'desc' | 'asc';
+
 interface CommentsState {
   loading: boolean;
   loadingMore: boolean;
@@ -56,6 +58,7 @@ interface CommentsState {
   skip: number;
   hasMore: boolean;
   replayTo?: IComment;
+  sort: SortOrder;
 }
 
 const initialState: CommentsState = {
@@ -67,26 +70,27 @@ const initialState: CommentsState = {
   total: 0,
   skip: 0,
   hasMore: false,
-  replayTo: undefined
+  replayTo: undefined,
+  sort: 'desc'
 };
 
 export const getComments = createAsyncThunk(
   'comments/getComments',
-  async () => {
+  async (sort: SortOrder = 'desc') => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
     const data = await apiGet<CommentsResponse>(
-      `/comments?pageId=${encodeURIComponent(pageId)}&limit=${COMMENTS_LIMIT}&skip=0`
+      `/comments?pageId=${encodeURIComponent(pageId)}&limit=${COMMENTS_LIMIT}&skip=0&sort=${sort}`
     );
-    return data;
+    return { ...data, sort };
   }
 );
 
 export const getMoreComments = createAsyncThunk(
   'comments/getMoreComments',
-  async (skip: number) => {
+  async ({ skip, sort }: { skip: number; sort: SortOrder }) => {
     const pageId = `${window.location.hostname}${window.location.pathname}`;
     const data = await apiGet<CommentsResponse>(
-      `/comments?pageId=${encodeURIComponent(pageId)}&limit=${COMMENTS_LIMIT}&skip=${skip}`
+      `/comments?pageId=${encodeURIComponent(pageId)}&limit=${COMMENTS_LIMIT}&skip=${skip}&sort=${sort}`
     );
     return data;
   }
@@ -126,6 +130,9 @@ const commentsSlice = createSlice({
   reducers: {
     replay: (state, action: PayloadAction<IComment | undefined>) => {
       state.replayTo = action.payload;
+    },
+    setSort: (state, action: PayloadAction<SortOrder>) => {
+      state.sort = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -138,11 +145,12 @@ const commentsSlice = createSlice({
       .addCase(getComments.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const { comments, total, skip, hasMore } = action.payload;
+        const { comments, total, skip, hasMore, sort } = action.payload;
         state.comments = comments || [];
         state.total = total;
         state.skip = skip + (comments?.length || 0);
         state.hasMore = hasMore;
+        state.sort = sort;
       })
       .addCase(getComments.rejected, (state) => {
         state.loading = false;
@@ -250,5 +258,5 @@ const commentsSlice = createSlice({
   }
 });
 
-export const { replay } = commentsSlice.actions;
+export const { replay, setSort } = commentsSlice.actions;
 export default commentsSlice.reducer;
