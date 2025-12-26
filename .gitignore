@@ -8,3 +8,4 @@ yarn-error.log
 .env
 .env.production
 /parcel-bundle-reports/modern.html
+docs
