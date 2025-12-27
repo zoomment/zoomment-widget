@@ -20,6 +20,9 @@ export const SortContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 10px 4px 0 4px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const SortButton = styled.button<{ $active?: boolean }>`
@@ -51,7 +54,7 @@ export const Container = styled.div`
 `;
 
 export const List = styled.div`
-  padding: 20px 10px;
+  padding: 20px 4px;
 `;
 
 export const NoResult = styled.div`

@@ -68,13 +68,7 @@ export default function Comment({ comment, children, gravatar }: Props) {
             {author} {comment.isVerified && <CheckCircleFilled />} •
             <Date>{dayjs(comment.createdAt).format('DD MMM YYYY - HH:mm')}</Date>
           </Username>
-          <HeaderActions>
-            {comment.isOwn && (
-              <Delete onClick={() => dispatch(removeComment(comment))}>
-                <DeleteOutlined /> Delete
-              </Delete>
-            )}
-          </HeaderActions>
+          <HeaderActions></HeaderActions>
         </Header>
         <Body>{comment.body}</Body>
         <Actions>
@@ -112,6 +106,11 @@ export default function Comment({ comment, children, gravatar }: Props) {
           >
             <CommentOutlined /> {t('REPLY')}
           </Reply>
+          {comment.isOwn && (
+            <Delete onClick={() => dispatch(removeComment(comment))}>
+              <DeleteOutlined /> {t('DELETE')}
+            </Delete>
+          )}
         </Actions>
         {children}
       </Content>

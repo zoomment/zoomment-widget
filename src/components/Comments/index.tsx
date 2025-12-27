@@ -105,15 +105,15 @@ export default function Comments(props: Props) {
         <Title>
           {total} {total > 1 ? t('COMMENTS') : t('COMMENT')}
         </Title>
-        <SortContainer>
-          <SortButton $active={sort === 'desc'} onClick={() => handleSortChange('desc')}>
-            {t('NEWEST')}
-          </SortButton>
-          <SortButton $active={sort === 'asc'} onClick={() => handleSortChange('asc')}>
-            {t('OLDEST')}
-          </SortButton>
-        </SortContainer>
       </Header>
+      <SortContainer>
+        <SortButton $active={sort === 'desc'} onClick={() => handleSortChange('desc')}>
+          {t('NEWEST')}
+        </SortButton>
+        <SortButton $active={sort === 'asc'} onClick={() => handleSortChange('asc')}>
+          {t('OLDEST')}
+        </SortButton>
+      </SortContainer>
       {loading ? (
         <NoResult>{t('LOADING')}</NoResult>
       ) : (
