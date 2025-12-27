@@ -214,7 +214,12 @@ const commentsSlice = createSlice({
         state.error = null;
         const comment = action.payload as IComment;
         if (!comment.parentId) {
-          state.comments.push(comment);
+          // Add to beginning if sorted by newest, end if sorted by oldest
+          if (state.sort === 'desc') {
+            state.comments.unshift(comment);
+          } else {
+            state.comments.push(comment);
+          }
           state.total += 1;
         } else {
           const parentComment = state.comments.find(c => c._id === comment.parentId);
