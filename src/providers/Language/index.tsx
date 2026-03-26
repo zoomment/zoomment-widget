@@ -7,6 +7,7 @@ import hyw from 'locales/hyw.json';
 import ru from 'locales/ru.json';
 import zh from 'locales/zh.json';
 import es from 'locales/es.json';
+import ar from 'locales/ar.json';
 
 const resources = {
   en: { translation: en },
@@ -14,7 +15,8 @@ const resources = {
   hyw: { translation: hyw },
   ru: { translation: ru },
   zh: { translation: zh },
-  es: { translation: es }
+  es: { translation: es },
+  ar: { translation: ar }
 };
 
 i18n.use(initReactI18next).init({
@@ -39,5 +41,9 @@ export default function LanguageProvider(props: Props) {
     }
   }, [props.language]);
 
-  return <I18nextProvider i18n={i18n}>{props.children}</I18nextProvider>;
+  return (
+    <I18nextProvider i18n={i18n}>
+      <div dir={i18n.dir(props.language || 'en')}>{props.children}</div>
+    </I18nextProvider>
+  );
 }
