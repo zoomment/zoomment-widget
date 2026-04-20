@@ -10,7 +10,8 @@ const Message = styled.div`
   position: relative;
   margin-bottom: 10px;
   letter-spacing: 0.5px;
-  padding: 5px 30px 5px 10px;
+  padding-block: 5px;
+  padding-inline: 10px 30px;
 `;
 
 export const ErrorMessage = styled(Message)`
@@ -23,7 +24,7 @@ export const SuccessMessage = styled(Message)`
 
 export const Close = styled(CloseOutlined)`
   position: absolute;
-  right: 12px;
+  inset-inline-end: 12px;
   top: 9px;
   cursor: pointer;
   opacity: 0.8;

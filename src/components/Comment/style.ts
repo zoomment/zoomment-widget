@@ -13,7 +13,7 @@ export const Avatar = styled.img`
   height: 35px;
   flex-shrink: 0;
   border-radius: 4px;
-  margin: 0 10px 0 0 !important;
+  margin-inline-end: 10px !important;
 `;
 
 export const Header = styled.div`
@@ -35,7 +35,7 @@ export const User = styled.div`
 export const Username = styled.div`
   font-size: 12px;
   font-weight: 700;
-  margin-right: 5px;
+  margin-inline-end: 5px;
   letter-spacing: 0.5px;
   color: ${props => props.theme.textMuted};
   svg {
@@ -46,7 +46,7 @@ export const Username = styled.div`
 export const Date = styled.span`
   font-size: 12px;
   font-weight: 500;
-  margin-left: 5px;
+  margin-inline-start: 5px;
   letter-spacing: 0px;
   text-decoration: none;
   color: ${props => props.theme.textMuted};

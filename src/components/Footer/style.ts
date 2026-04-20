@@ -6,7 +6,7 @@ export const Container = styled.div`
   line-height: 1;
   font-size: 11px;
   padding: 8px 10px;
-  text-align: right;
+  text-align: end;
   letter-spacing: 0.5px;
   box-sizing: border-box;
   margin-top: 10px;

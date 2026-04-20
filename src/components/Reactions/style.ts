@@ -39,6 +39,6 @@ export const ContentBubble = styled.button<{ $selected: boolean }>`
 `;
 
 export const ContentBubbleCount = styled.span`
-  padding-left: 4px;
+  padding-inline-start: 4px;
   font-size: 16px;
 `;

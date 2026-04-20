@@ -60,7 +60,7 @@ export const Button = styled.button`
   letter-spacing: 0.5px;
   display: inline-block;
   transition: background 0.2s;
-  border-radius: 0px 0px 6px 0px;
+  border-end-end-radius: 6px;
   color: ${props => props.theme.buttonColor};
   background: ${props => props.theme.buttonBackground};
   &:disabled {
@@ -68,7 +68,7 @@ export const Button = styled.button`
     position: relative;
     &:after {
       top: 26%;
-      left: 43%;
+      inset-inline-start: 43%;
       content: '';
       width: 15px;
       height: 15px;
@@ -116,8 +116,8 @@ export const Input = styled.input`
   box-sizing: border-box;
   color: ${props => props.theme.textColor};
   background: ${props => props.theme.inputBackground};
-  border-right: 1px solid ${props => props.theme.borderColor};
+  border-inline-end: 1px solid ${props => props.theme.borderColor};
   &:first-child {
-    border-radius: 0 0 0 5px;
+    border-end-start-radius: 5px;
   }
 `;
