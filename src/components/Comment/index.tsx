@@ -4,15 +4,13 @@ import { removeComment, replay } from '../../store/slices/commentsSlice';
 import { vote } from '../../store/slices/votesSlice';
 import { IComment } from '../../store/slices/commentsSlice';
 import { useTranslation } from 'react-i18next';
-import {
-  CheckCircleFilled,
-  DeleteOutlined,
-  CommentOutlined,
-  LikeOutlined,
-  LikeFilled,
-  DislikeOutlined,
-  DislikeFilled
-} from '@ant-design/icons';
+import CheckCircleFilled from '@ant-design/icons/CheckCircleFilled';
+import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
+import CommentOutlined from '@ant-design/icons/CommentOutlined';
+import LikeOutlined from '@ant-design/icons/LikeOutlined';
+import LikeFilled from '@ant-design/icons/LikeFilled';
+import DislikeOutlined from '@ant-design/icons/DislikeOutlined';
+import DislikeFilled from '@ant-design/icons/DislikeFilled';
 import dayjs from 'dayjs';
 
 import {
